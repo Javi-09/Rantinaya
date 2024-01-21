@@ -24,7 +24,6 @@
             android:layout_height="wrap_content"
             android:textSize="24sp"
             android:textStyle="bold"
-            android:textColor="#33691E"
             android:layout_below="@id/ViewPrincipal"
             android:padding="8dp"/>
 
@@ -42,7 +41,6 @@
             android:layout_height="wrap_content"
             android:textSize="24sp"
             android:textStyle="bold"
-            android:textColor="#33691E"
             android:layout_below="@id/videoViewEmpresa"
             android:padding="8dp"/>
 
@@ -67,7 +65,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Ver en Mapa"
-            android:background="#689F38"
+            android:background="@color/verdeAgua"
             android:textColor="#FFFFFF"
             android:layout_below="@id/recyclerViewServicios"
             android:layout_marginTop="16dp"/>
