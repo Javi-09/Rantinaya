@@ -22,7 +22,7 @@ class MostrarEmpresaSachaServicio : AppCompatActivity(), EmpresaAdapter.ClickLis
         recyclerView = findViewById(R.id.recyclerViewEmpresas)
         databaseHelper = DBHelperServicio(this)
 
-        // Obtener y mostrar las empresas de Francisco de Orellana
+        // Obtener y mostrar las empresas de Sacha
         val empresasFOP = databaseHelper.getEmpresasByCantonId(1)  // Cambia por el id_canton deseado
 
         // Configurar el RecyclerView
