@@ -15,6 +15,7 @@ class Administrador : AppCompatActivity() {
         val btnBack: Button = findViewById(R.id.btnBack)
         val btnServicio: Button = findViewById(R.id.btnServicio)
         val btnProducto: Button = findViewById(R.id.btnProducto)
+        val btnAgregarAdmin: Button = findViewById(R.id.btnAgregarAdmin)
 
         btnBack.setOnClickListener {
             // Acción al presionar el botón de retorno
@@ -33,5 +34,12 @@ class Administrador : AppCompatActivity() {
             val intent = Intent(this, IngresarEmpresaProducto::class.java)
             startActivity(intent)
         }
+
+        btnAgregarAdmin.setOnClickListener {
+            // Acción al presionar el botón de Producto
+            val intent = Intent(this, IngresarAdministrador::class.java)
+            startActivity(intent)
+        }
+
     }
 }

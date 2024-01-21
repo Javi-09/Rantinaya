@@ -1,43 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-tools:context="com.example.myapplication.Administrador">
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.myapplication.Administrador">
 
-<Button
-    android:id="@+id/btnBack"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Volver"
-    android:layout_margin="16dp"
-    android:layout_alignParentStart="true"
-    android:layout_alignParentTop="true"/>
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Volver"
+        android:background="#D35400"
+        android:textColor="#FFFFFF"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true" />
 
-<TextView
-    android:id="@+id/tvTitle"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Ingreso Empresa"
-    android:textSize="24sp"
-    android:layout_centerHorizontal="true"
-    android:layout_marginTop="24dp"/>
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="INGRESAR"
+        android:textStyle="bold"
+        android:textSize="28sp"
+        android:textColor="#8E44AD"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:layout_below="@+id/btnBack" />
 
-<Button
-    android:id="@+id/btnServicio"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Servicio"
-    android:layout_below="@id/tvTitle"
-    android:layout_marginTop="32dp"
-    android:layout_centerHorizontal="true"/>
+    <Button
+        android:id="@+id/btnServicio"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="Empresa - Servicio"
+        android:layout_below="@+id/tvTitle"
+        android:layout_marginTop="32dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="18sp"
+        android:textColor="#FFFFFF"
+        android:background="#3498db" />
 
-<Button
-    android:id="@+id/btnProducto"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Producto"
-    android:layout_below="@id/btnServicio"
-    android:layout_marginTop="16dp"
-    android:layout_centerHorizontal="true"/>
+    <Button
+        android:id="@+id/btnProducto"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="Empresa - Producto"
+        android:layout_below="@+id/btnServicio"
+        android:layout_marginTop="16dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="18sp"
+        android:textColor="#FFFFFF"
+        android:background="#27ae60" />
+
+    <Button
+        android:id="@+id/btnAgregarAdmin"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="Administrador"
+        android:layout_below="@+id/btnProducto"
+        android:layout_marginTop="16dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="18sp"
+        android:textColor="#FFFFFF"
+        android:background="#CA6F1E" />
+
+    <TextView
+        android:id="@+id/tvTitle2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ELIMINAR"
+        android:textStyle="bold"
+        android:textSize="28sp"
+        android:textColor="#8E44AD"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:layout_below="@+id/btnAgregarAdmin" />
+
 </RelativeLayout>
