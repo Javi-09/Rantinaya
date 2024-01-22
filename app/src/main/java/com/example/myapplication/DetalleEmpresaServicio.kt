@@ -114,6 +114,8 @@ class DetalleEmpresaServicio : AppCompatActivity() {
 
             // Configurar clic del botón "Ver en Mapa"
             btnVerMapa.setOnClickListener {
+                val urlDireccion = empresa.direccion
+                redireccionarUrl(urlDireccion, "Google Maps")
                 // Lógica para abrir el mapa, usando la latitud y longitud de la empresa, por ejemplo, abrir Google Maps
             }
 
