@@ -113,7 +113,7 @@ class DetalleEmpresaProducto : AppCompatActivity() {
 
             // Configurar clic del botón "Ver en Mapa"
             btnVerMapa.setOnClickListener {
-                // Lógica para abrir el mapa, usando la latitud y longitud de la empresa, por ejemplo, abrir Google Maps
+                abrirMapa(empresa?.latitud, empresa?.longitud, empresa?.nombre)
             }
 
             // Redireccionamiento a Facebook
@@ -133,6 +133,24 @@ class DetalleEmpresaProducto : AppCompatActivity() {
                 val phoneNumber = empresa?.whatsapp
                 redireccionarWhatsapp(phoneNumber)
             }
+        }
+    }
+
+    private fun abrirMapa(latitud: Double?, longitud: Double?, nombreEmpresa: String?) {
+        if (latitud != null && longitud != null) {
+            val gmmIntentUri = Uri.parse("geo:$latitud,$longitud?q=$latitud,$longitud($nombreEmpresa)")
+            val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+
+            // Puedes establecer el paquete de Google Maps para asegurarte de abrirlo en caso de que haya otras aplicaciones de mapas instaladas.
+            mapIntent.setPackage("com.google.android.apps.maps")
+
+            if (mapIntent.resolveActivity(packageManager) != null) {
+                startActivity(mapIntent)
+            } else {
+                Log.e("DetalleEmpresaProducto", "No se encontró una aplicación para manejar la acción de ver en mapa.")
+            }
+        } else {
+            Log.e("DetalleEmpresaProducto", "La latitud o longitud de la empresa está vacía o nula.")
         }
     }
 
