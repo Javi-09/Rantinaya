@@ -6,17 +6,6 @@
     android:layout_height="match_parent"
     tools:context="com.example.myapplication.Administrador">
 
-    <Button
-        android:id="@+id/btnBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Volver"
-        android:background="#D35400"
-        android:textColor="#FFFFFF"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true" />
 
     <TextView
         android:id="@+id/tvTitle"
@@ -27,8 +16,7 @@
         android:textSize="28sp"
         android:textColor="#8E44AD"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
-        android:layout_below="@+id/btnBack" />
+        android:layout_marginTop="24dp" />
 
     <Button
         android:id="@+id/btnServicio"
@@ -43,39 +31,51 @@
         android:background="#3498db" />
 
     <Button
-        android:id="@+id/btnProducto"
+        android:id="@+id/btnRegistroServicios"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="Empresa - Producto"
+        android:text="Registro - Servicios"
         android:layout_below="@+id/btnServicio"
         android:layout_marginTop="16dp"
         android:layout_centerHorizontal="true"
         android:textSize="18sp"
         android:textColor="#FFFFFF"
-        android:background="#27ae60" />
+        android:background="#e74c3c" />
+
+    <Button
+        android:id="@+id/btnProducto"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnServicio"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:background="#27ae60"
+        android:text="Empresa - Producto"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp" />
 
     <Button
         android:id="@+id/btnAgregarAdmin"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="Administrador"
         android:layout_below="@+id/btnProducto"
-        android:layout_marginTop="16dp"
         android:layout_centerHorizontal="true"
-        android:textSize="18sp"
+        android:layout_marginTop="21dp"
+        android:background="#CA6F1E"
+        android:text="Administrador"
         android:textColor="#FFFFFF"
-        android:background="#CA6F1E" />
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/tvTitle2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ELIMINAR"
-        android:textStyle="bold"
-        android:textSize="28sp"
-        android:textColor="#8E44AD"
+        android:layout_below="@+id/btnAgregarAdmin"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
-        android:layout_below="@+id/btnAgregarAdmin" />
+        android:layout_marginTop="91dp"
+        android:text="ELIMINAR"
+        android:textColor="#8E44AD"
+        android:textSize="28sp"
+        android:textStyle="bold" />
 
 </RelativeLayout>
