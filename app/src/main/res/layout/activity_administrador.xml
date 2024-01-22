@@ -54,16 +54,16 @@
         android:textColor="#FFFFFF"
         android:background="#CA6F1E" />
 
-    <TextView
-        android:id="@+id/tvTitle2"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/btnEliminar"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="ELIMINAR"
-        android:textStyle="bold"
-        android:textSize="28sp"
-        android:textColor="#8E44AD"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
-        android:layout_below="@+id/btnAgregarAdmin" />
+        android:layout_marginStart="105dp"
+        android:layout_marginTop="290dp"
+        android:text="ELIMINAR-SERVICIO" />
+
 
 </RelativeLayout>
