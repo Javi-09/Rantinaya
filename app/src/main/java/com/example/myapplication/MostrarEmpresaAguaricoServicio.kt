@@ -23,7 +23,7 @@ class MostrarEmpresaAguaricoServicio : AppCompatActivity(), EmpresaAdapter.Click
         databaseHelper = DBHelperServicio(this)
 
         // Obtener y mostrar las empresas de Aguarico
-        val empresasFOP = databaseHelper.getEmpresasByCantonId(1)  // Cambia por el id_canton deseado
+        val empresasFOP = databaseHelper.getEmpresasByCantonId(4)  // Cambia por el id_canton deseado
 
         // Configurar el RecyclerView
         adapter = EmpresaAdapter(empresasFOP, this)

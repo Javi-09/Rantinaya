@@ -23,7 +23,7 @@ class MostrarEmpresaLoretoServicio : AppCompatActivity(), EmpresaAdapter.ClickLi
         databaseHelper = DBHelperServicio(this)
 
         // Obtener y mostrar las empresas de Loreto
-        val empresasFOP = databaseHelper.getEmpresasByCantonId(1)  // Cambia por el id_canton deseado
+        val empresasFOP = databaseHelper.getEmpresasByCantonId(3)  // Cambia por el id_canton deseado
 
         // Configurar el RecyclerView
         adapter = EmpresaAdapter(empresasFOP, this)

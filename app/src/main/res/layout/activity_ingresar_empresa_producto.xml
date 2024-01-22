@@ -114,28 +114,15 @@
                 app:layout_constraintEnd_toEndOf="parent" />
 
             <EditText
-                android:id="@+id/editLatitud"
+                android:id="@+id/editDireccion"
                 android:layout_width="0dp"
                 android:layout_height="35dp"
                 android:layout_marginTop="11dp"
-                android:hint="Latitud"
+                android:hint="Direccion"
                 android:background="#FFFFFF"
                 app:layout_constraintTop_toBottomOf="@+id/editTextWhatsapp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/editLongitud" />
-
-            <EditText
-                android:id="@+id/editLongitud"
-                android:layout_width="0dp"
-                android:layout_height="35dp"
-                android:layout_marginTop="11dp"
-                android:hint="Longitud"
-                android:background="#FFFFFF"
-                app:layout_constraintTop_toBottomOf="@+id/editLatitud"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/btnSeleccionarImagenEmpresa" />
+                app:layout_constraintEnd_toEndOf="parent"/>
 
             <!-- Botones -->
             <Button
@@ -146,7 +133,7 @@
                 android:text="Imagen Empresa"
                 android:textColor="#FFFFFF"
                 android:background="#2268E1"
-                app:layout_constraintTop_toBottomOf="@+id/editLongitud"
+                app:layout_constraintTop_toBottomOf="@+id/editDireccion"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 

@@ -8,8 +8,7 @@ data class Empresa(
     val facebook: String,
     val instagram: String,
     val whatsapp: String,
-    val longitud: Double,
-    val latitud: Double,
+    val direccion: String,
     val imagen_empresa: ByteArray?,
     val imagen_propietario: ByteArray?,
     val video_url: String, // Nuevo campo para la URL del video
@@ -24,8 +23,7 @@ data class Empresa(
         const val COLUMN_FACEBOOK = "facebook"
         const val COLUMN_INSTAGRAM = "instagram"
         const val COLUMN_WHATSAPP = "whatsapp"
-        const val COLUMN_LONGITUD = "longitud"
-        const val COLUMN_LATITUD = "latitud"
+        const val COLUMN_DIRECCION = "direccion"
         const val COLUMN_IMAGEN_EMPRESA = "imagen_empresa"
         const val COLUMN_IMAGEN_PROPIETARIO = "imagen_propietario"
         const val COLUMN_VIDEO_URL = "video_url" // Nuevo campo para la URL del video
@@ -39,8 +37,7 @@ data class Empresa(
                 "$COLUMN_FACEBOOK TEXT, " +
                 "$COLUMN_INSTAGRAM TEXT, " +
                 "$COLUMN_WHATSAPP TEXT, " +
-                "$COLUMN_LONGITUD REAL, " +
-                "$COLUMN_LATITUD REAL, " +
+                "$COLUMN_DIRECCION TEXT, " +
                 "$COLUMN_IMAGEN_EMPRESA BLOB, " +
                 "$COLUMN_IMAGEN_PROPIETARIO BLOB, " +
                 "$COLUMN_VIDEO_URL TEXT, " + // Nuevo campo para la URL del video

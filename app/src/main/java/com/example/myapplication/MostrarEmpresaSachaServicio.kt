@@ -23,7 +23,7 @@ class MostrarEmpresaSachaServicio : AppCompatActivity(), EmpresaAdapter.ClickLis
         databaseHelper = DBHelperServicio(this)
 
         // Obtener y mostrar las empresas de Sacha
-        val empresasFOP = databaseHelper.getEmpresasByCantonId(1)  // Cambia por el id_canton deseado
+        val empresasFOP = databaseHelper.getEmpresasByCantonId(2)  // Cambia por el id_canton deseado
 
         // Configurar el RecyclerView
         adapter = EmpresaAdapter(empresasFOP, this)

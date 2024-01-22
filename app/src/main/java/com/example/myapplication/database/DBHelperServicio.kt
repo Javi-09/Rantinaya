@@ -104,8 +104,7 @@ class DBHelperServicio(context: Context) : SQLiteOpenHelper(context, DATABASE_NA
         values.put(Empresa.COLUMN_FACEBOOK, empresa.facebook)
         values.put(Empresa.COLUMN_INSTAGRAM, empresa.instagram)
         values.put(Empresa.COLUMN_WHATSAPP, empresa.whatsapp)
-        values.put(Empresa.COLUMN_LONGITUD, empresa.longitud)
-        values.put(Empresa.COLUMN_LATITUD, empresa.latitud)
+        values.put(Empresa.COLUMN_DIRECCION, empresa.direccion)
         // Eliminamos la conversión de imagen de ByteArray a Blob
         values.put(Empresa.COLUMN_IMAGEN_EMPRESA, empresa.imagen_empresa)
         values.put(Empresa.COLUMN_IMAGEN_PROPIETARIO, empresa.imagen_propietario)
@@ -136,8 +135,7 @@ class DBHelperServicio(context: Context) : SQLiteOpenHelper(context, DATABASE_NA
             val facebookIndex = cursor.getColumnIndex(Empresa.COLUMN_FACEBOOK)
             val instagramIndex = cursor.getColumnIndex(Empresa.COLUMN_INSTAGRAM)
             val whatsappIndex = cursor.getColumnIndex(Empresa.COLUMN_WHATSAPP)
-            val longitudIndex = cursor.getColumnIndex(Empresa.COLUMN_LONGITUD)
-            val latitudIndex = cursor.getColumnIndex(Empresa.COLUMN_LATITUD)
+            val direccionIndex = cursor.getColumnIndex(Empresa.COLUMN_DIRECCION)
             val imagenEmpresaIndex = cursor.getColumnIndex(Empresa.COLUMN_IMAGEN_EMPRESA)
             val imagenPropietarioIndex = cursor.getColumnIndex(Empresa.COLUMN_IMAGEN_PROPIETARIO)
             val videoEmpresaIndex = cursor.getColumnIndex(Empresa.COLUMN_VIDEO_URL)
@@ -150,8 +148,7 @@ class DBHelperServicio(context: Context) : SQLiteOpenHelper(context, DATABASE_NA
             val facebook = cursor.getString(facebookIndex)
             val instagram = cursor.getString(instagramIndex)
             val whatsapp = cursor.getString(whatsappIndex)
-            val longitud = cursor.getDouble(longitudIndex)
-            val latitud = cursor.getDouble(latitudIndex)
+            val direccion = cursor.getString(direccionIndex)
             val imagenEmpresa = cursor.getBlob(imagenEmpresaIndex)
             val imagenPropietario = cursor.getBlob(imagenPropietarioIndex)
             val videoUrl = cursor.getString(videoEmpresaIndex)
@@ -159,7 +156,7 @@ class DBHelperServicio(context: Context) : SQLiteOpenHelper(context, DATABASE_NA
 
             val empresa = Empresa(
                 id, nombre, slogan, nombrePropietario, facebook, instagram, whatsapp,
-                longitud, latitud, imagenEmpresa, imagenPropietario, videoUrl, fkEmpresaCanton
+                direccion, imagenEmpresa, imagenPropietario, videoUrl, fkEmpresaCanton
             )
 
             empresas.add(empresa)
@@ -189,8 +186,7 @@ class DBHelperServicio(context: Context) : SQLiteOpenHelper(context, DATABASE_NA
             val facebookIndex = cursor.getColumnIndex(Empresa.COLUMN_FACEBOOK)
             val instagramIndex = cursor.getColumnIndex(Empresa.COLUMN_INSTAGRAM)
             val whatsappIndex = cursor.getColumnIndex(Empresa.COLUMN_WHATSAPP)
-            val longitudIndex = cursor.getColumnIndex(Empresa.COLUMN_LONGITUD)
-            val latitudIndex = cursor.getColumnIndex(Empresa.COLUMN_LATITUD)
+            val direccionIndex = cursor.getColumnIndex(Empresa.COLUMN_DIRECCION)
             val imagenEmpresaIndex = cursor.getColumnIndex(Empresa.COLUMN_IMAGEN_EMPRESA)
             val imagenPropietarioIndex = cursor.getColumnIndex(Empresa.COLUMN_IMAGEN_PROPIETARIO)
             val videoUrlIndex = cursor.getColumnIndex(Empresa.COLUMN_VIDEO_URL) // Nueva columna para la URL del video
@@ -203,8 +199,7 @@ class DBHelperServicio(context: Context) : SQLiteOpenHelper(context, DATABASE_NA
             val facebook = cursor.getString(facebookIndex)
             val instagram = cursor.getString(instagramIndex)
             val whatsapp = cursor.getString(whatsappIndex)
-            val longitud = cursor.getDouble(longitudIndex)
-            val latitud = cursor.getDouble(latitudIndex)
+            val direccion = cursor.getString(direccionIndex)
             val imagenEmpresa = cursor.getBlob(imagenEmpresaIndex)
             val imagenPropietario = cursor.getBlob(imagenPropietarioIndex)
             val videoUrl = cursor.getString(videoUrlIndex) // Nueva variable para la URL del video
@@ -212,7 +207,7 @@ class DBHelperServicio(context: Context) : SQLiteOpenHelper(context, DATABASE_NA
 
             Empresa(
                 id, nombre, slogan, nombrePropietario, facebook, instagram, whatsapp,
-                longitud, latitud, imagenEmpresa, imagenPropietario, videoUrl, fkEmpresaCanton // Actualización del campo de video
+                direccion, imagenEmpresa, imagenPropietario, videoUrl, fkEmpresaCanton // Actualización del campo de video
             )
         } else {
             null

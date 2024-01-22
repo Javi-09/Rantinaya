@@ -22,8 +22,7 @@ class IngresarEmpresaProducto : AppCompatActivity() {
     private lateinit var editTextFacebook: EditText
     private lateinit var editTextInstagram: EditText
     private lateinit var editTextWhatsapp: EditText
-    private lateinit var editLatitud: EditText
-    private lateinit var editLongitud: EditText
+    private lateinit var editDireccion:EditText
     private lateinit var editVideoUrl: EditText  // Nuevo campo para la URL del video
     private lateinit var spinnerCanton: Spinner
     private lateinit var btnGuardarEmpresa: Button
@@ -59,8 +58,7 @@ class IngresarEmpresaProducto : AppCompatActivity() {
         editTextFacebook = findViewById(R.id.editTextFacebook)
         editTextInstagram = findViewById(R.id.editTextInstagram)
         editTextWhatsapp = findViewById(R.id.editTextWhatsapp)
-        editLatitud = findViewById(R.id.editLatitud)
-        editLongitud = findViewById(R.id.editLongitud)
+        editDireccion = findViewById(R.id.editDireccion)
         editVideoUrl = findViewById(R.id.editVideoUrl)  // Referencia al EditText de la URL del video
         btnSeleccionarImagenEmpresa = findViewById(R.id.btnSeleccionarImagenEmpresa)
         btnSeleccionarImagenPropietario = findViewById(R.id.btnSeleccionarImagenPropietario)
@@ -96,8 +94,7 @@ class IngresarEmpresaProducto : AppCompatActivity() {
             facebook = editTextFacebook.text.toString(),
             instagram = editTextInstagram.text.toString(),
             whatsapp = editTextWhatsapp.text.toString(),
-            longitud = editLatitud.text.toString().toDouble(),
-            latitud = editLongitud.text.toString().toDouble(),
+            direccion = editDireccion.text.toString(),
             imagen_empresa = imagenSeleccionadaEmpresa,
             imagen_propietario = imagenSeleccionadaPropietario,
             video_url = editVideoUrl.text.toString(),  // Nueva propiedad para la URL del video
