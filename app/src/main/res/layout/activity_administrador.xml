@@ -6,17 +6,6 @@
     android:layout_height="match_parent"
     tools:context="com.example.myapplication.Administrador">
 
-    <Button
-        android:id="@+id/btnBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Volver"
-        android:background="#D35400"
-        android:textColor="#FFFFFF"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true" />
 
     <TextView
         android:id="@+id/tvTitle"
@@ -27,8 +16,7 @@
         android:textSize="28sp"
         android:textColor="#8E44AD"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
-        android:layout_below="@+id/btnBack" />
+        android:layout_marginTop="24dp" />
 
     <Button
         android:id="@+id/btnServicio"
@@ -66,16 +54,17 @@
         android:textColor="#FFFFFF"
         android:background="#CA6F1E" />
 
-    <TextView
-        android:id="@+id/tvTitle2"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/btnEliminarServicio"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="ELIMINAR"
-        android:textStyle="bold"
-        android:textSize="28sp"
-        android:textColor="#8E44AD"
+        android:layout_below="@+id/btnServicio"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
-        android:layout_below="@+id/btnAgregarAdmin" />
+        android:layout_marginTop="149dp"
+        android:background="#FF6347"
+        android:text="ELIMINAR-SERVICIO"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp" />
+
 
 </RelativeLayout>
