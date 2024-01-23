@@ -65,6 +65,17 @@
         android:textSize="18sp"
         android:textColor="#FFFFFF"
         android:background="#CA6F1E" />
+    <Button
+        android:id="@+id/btnEliminar"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="ELIMINAR"
+        android:layout_below="@+id/tvTitle2"
+        android:layout_marginTop="32dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="18sp"
+        android:textColor="#FFFFFF"
+        android:background="#3498db" />
 
     <Button
         android:id="@+id/btnEliminar"

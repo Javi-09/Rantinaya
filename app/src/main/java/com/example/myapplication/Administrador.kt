@@ -1,6 +1,5 @@
 package com.example.myapplication
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -9,7 +8,6 @@ import com.example.e_commerce.R
 
 class Administrador : AppCompatActivity() {
 
-    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_administrador)
@@ -18,8 +16,7 @@ class Administrador : AppCompatActivity() {
         val btnServicio: Button = findViewById(R.id.btnServicio)
         val btnProducto: Button = findViewById(R.id.btnProducto)
         val btnAgregarAdmin: Button = findViewById(R.id.btnAgregarAdmin)
-        val btnActualizarEmpresa: Button = findViewById(R.id.bntActualizarEmpresa)// Corrected ID
-        val btnEliminarServicio: Button = findViewById(R.id.btnEliminar)
+        val btnActualizarEmpresa: Button = findViewById(R.id.bntActualizarEmpresa) // Corrected ID
 
 
 
@@ -44,10 +41,6 @@ class Administrador : AppCompatActivity() {
         btnActualizarEmpresa.setOnClickListener {
             // Acción al presionar el botón de Producto
             val intent = Intent(this, ActualizarEmpresasProducto::class.java)
-            startActivity(intent)
-        }
-        btnEliminarServicio.setOnClickListener{
-            val intent = Intent(this, EliminarServicio::class.java )
             startActivity(intent)
         }
     }
