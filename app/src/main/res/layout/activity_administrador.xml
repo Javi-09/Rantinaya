@@ -77,16 +77,16 @@
         android:textColor="#FFFFFF"
         android:background="#3498db" />
 
-    <TextView
-        android:id="@+id/tvTitle2"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/btnEliminar"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="ELIMINAR"
+        android:text="ELIMINAR-SERVICIO"
         android:textStyle="bold"
-        android:textSize="28sp"
+        android:textSize="18sp"
         android:textColor="#8E44AD"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:layout_below="@+id/btnAgregarAdmin" />
 
     <TextView
@@ -98,8 +98,7 @@
         android:textSize="28sp"
         android:textColor="#8E44AD"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
-        android:layout_below="@+id/tvTitle2" />
+        android:layout_marginTop="24dp"/>
 
     <Button
         android:id="@+id/bntActualizarEmpresa"
