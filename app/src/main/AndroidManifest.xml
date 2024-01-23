@@ -23,6 +23,9 @@
             android:name="com.example.myapplication.ActualizarEmpresasServicio"
             android:exported="false" />
         <activity
+            android:name="com.example.myapplication.EliminarServicio"
+            android:exported="false" />
+        <activity
             android:name="com.example.myapplication.EliminarEmpresaProducto"
             android:exported="false" />
         <activity

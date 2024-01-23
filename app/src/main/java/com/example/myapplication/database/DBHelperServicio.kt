@@ -258,6 +258,50 @@ class DBHelperServicio(context: Context) : SQLiteOpenHelper(context, DATABASE_NA
 
     //-----------
 
+
+    //Funcion eliminaempresa servicio
+    fun eliminarEmpresaPorNombreYIdCanton(nombreEmpresa: String, idCanton: Long): Boolean {
+        val db = this.writableDatabase
+
+        // Asegúrate de manejar el caso donde la columna de nombre tenga el mismo nombre que la variable
+        val whereClause = "${Empresa.COLUMN_NOMBRE} = ? AND ${Empresa.COLUMN_FK_EMPRESA_CANTON} = ?"
+        val whereArgs = arrayOf(nombreEmpresa, idCanton.toString())
+
+        // Intenta realizar la eliminación y maneja cualquier excepción
+        return try {
+            db.delete(Empresa.TABLE_NAME, whereClause, whereArgs) > 0
+        } catch (e: Exception) {
+            // Puedes imprimir el mensaje de error si es necesario
+            e.printStackTrace()
+            false
+        } finally {
+            db.close()
+        }
+    }
+
+// En tu clase DBHelperServicio
+
+    fun eliminarEmpresaPorNombre(nombreEmpresa: String): Boolean {
+        val db = this.writableDatabase
+
+        // Asegúrate de manejar el caso donde la columna de nombre tenga el mismo nombre que la variable
+        val whereClause = "${Empresa.COLUMN_NOMBRE} = ?"
+        val whereArgs = arrayOf(nombreEmpresa)
+
+        // Intenta realizar la eliminación y maneja cualquier excepción
+        return try {
+            db.delete(Empresa.TABLE_NAME, whereClause, whereArgs) > 0
+        } catch (e: Exception) {
+            // Puedes imprimir el mensaje de error si es necesario
+            e.printStackTrace()
+            false
+        } finally {
+            db.close()
+        }
+    }
+
+    //------------
+
     //funcion para actualizarempresaservicio
 
     fun getEmpresaByNombre(nombre: String): Empresa? {

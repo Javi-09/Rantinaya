@@ -1,6 +1,5 @@
 package com.example.myapplication
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
@@ -8,8 +7,10 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.e_commerce.R
 import com.example.myapplication.database.DBHelperServicio
+import com.example.myapplication.database.Canton
 import com.example.myapplication.database.Empresa
 
 class EliminarServicio : AppCompatActivity() {
@@ -17,7 +18,8 @@ class EliminarServicio : AppCompatActivity() {
     private lateinit var dbHelper: DBHelperServicio
     private lateinit var spinnerCantones: Spinner
     private lateinit var spinnerEmpresas: Spinner
-    private lateinit var btnEliminar: Button
+    private lateinit var btnEliminarEmpresa: Button
+    private lateinit var empresasAdapter: ArrayAdapter<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,18 +28,17 @@ class EliminarServicio : AppCompatActivity() {
         dbHelper = DBHelperServicio(this)
         spinnerCantones = findViewById(R.id.spinnerCantones)
         spinnerEmpresas = findViewById(R.id.spinnerEmpresas)
-        btnEliminar = findViewById(R.id.btnEliminar)
+        btnEliminarEmpresa = findViewById(R.id.btnEliminarEmpresa)
 
         // Obtener la lista de cantones desde la base de datos
         val cantonesFromDB = dbHelper.getAllCantones()
         val cantones = mutableListOf<String>()
-        cantones.add("Seleccione el cantón")
-        cantones.addAll(cantonesFromDB.map { it.nombreCanton })
 
-        val EmpresaFromDB = dbHelper.getAllCantones()
-        val empresa = mutableListOf<String>()
-        empresa.add("Seleccione la empresa")
-        empresa.addAll(cantonesFromDB.map { it.nombreCanton })
+        // Agregar "Seleccione el cantón" al principio
+        cantones.add("Seleccione el cantón")
+
+        // Agregar los nombres de cantones a la lista
+        cantones.addAll(cantonesFromDB.map { it.nombreCanton })
 
         // Crear un adaptador para el Spinner de Cantones
         val cantonesAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, cantones)
@@ -45,24 +46,30 @@ class EliminarServicio : AppCompatActivity() {
         spinnerCantones.adapter = cantonesAdapter
 
         // Crear un adaptador vacío para el Spinner de Empresas
-        val empresasAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, mutableListOf<String>())
+        empresasAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, mutableListOf())
         empresasAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerEmpresas.adapter = empresasAdapter
-
-        // Mostrar mensaje antes de seleccionar el cantón
-        Toast.makeText(this, "Seleccione un cantón", Toast.LENGTH_SHORT).show()
 
         // Manejar la selección del Spinner de Cantones
         spinnerCantones.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 if (position != 0) {
-                    val selectedCanton = cantonesFromDB[position - 1]
-                    val empresasByCanton = dbHelper.getEmpresasByCantonId(selectedCanton.id)
-                    val empresasNombres = empresasByCanton.map { it.nombre }
+                    val selectedCantonName = spinnerCantones.selectedItem.toString()
+                    val selectedCanton = cantonesFromDB.find { it.nombreCanton == selectedCantonName }
 
-                    empresasAdapter.clear()
-                    empresasAdapter.addAll(empresasNombres)
+                    // Verificar si se encontró el cantón seleccionado
+                    if (selectedCanton != null) {
+                        val empresasByCanton = dbHelper.getEmpresasByCantonId(selectedCanton.id)
+
+                        // Obtener los nombres de empresas desde la lista de empresasByCanton
+                        val empresasNombres = empresasByCanton.map { it.nombre }
+
+                        // Limpiar y agregar las nuevas empresas al Spinner de Empresas
+                        empresasAdapter.clear()
+                        empresasAdapter.addAll(empresasNombres)
+                    }
                 } else {
+                    // Si se selecciona "Seleccione el cantón", limpia la lista de empresas
                     empresasAdapter.clear()
                 }
             }
@@ -72,46 +79,39 @@ class EliminarServicio : AppCompatActivity() {
             }
         })
 
-        // Manejar la selección del Spinner de Empresas
-        spinnerEmpresas.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                val selectedEmpresa = empresasAdapter.getItem(position)
+        // Configurar el clic del botón Eliminar Empresa
+        btnEliminarEmpresa.setOnClickListener {
+            val selectedEmpresaName = spinnerEmpresas.selectedItem.toString()
 
-                // Mostrar mensaje antes de seleccionar la empresa
-                if (selectedEmpresa == null || selectedEmpresa == "Seleccione la empresa") {
-                    mostrarMensaje("Seleccione una empresa antes de eliminar")
-                }
-            }
+            // Obtener el ID del cantón seleccionado
+            val selectedCantonName = spinnerCantones.selectedItem.toString()
+            val selectedCanton = cantonesFromDB.find { it.nombreCanton == selectedCantonName }
+            val idCanton = selectedCanton?.id ?: 0L
 
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                // Opcional: manejar la situación cuando no se selecciona nada
-            }
-        })
-
-        // Configurar el listener del botón Eliminar
-        btnEliminar.setOnClickListener {
-            val cantonSeleccionado = spinnerCantones.selectedItem.toString()
-            val empresaSeleccionada = spinnerEmpresas.selectedItem.toString()
-
-            if (cantonSeleccionado == "Seleccione el cantón" || empresaSeleccionada == "Seleccione la empresa") {
-                mostrarMensaje("Seleccione un cantón y una empresa antes de eliminar")
+            // Verificar si se seleccionó una empresa válida
+            if (selectedEmpresaName != "Seleccione la empresa" && idCanton != 0L) {
+                // Llamar a la función para eliminar la empresa
+                eliminarEmpresa(selectedEmpresaName, idCanton)
             } else {
-                val exito = dbHelper.eliminarServicio(cantonSeleccionado, empresaSeleccionada)
-
-                if (exito) {
-                    mostrarMensaje("Servicio eliminado con éxito")
-                } else {
-                    mostrarMensaje("Error al eliminar el servicio")
-                }
+                Toast.makeText(this@EliminarServicio, "Seleccione una empresa válida", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
-    private fun mostrarMensaje(mensaje: String) {
-        // Lógica para mostrar mensajes (Toast, Snackbar, etc.)
-        Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show()
+    // Función para manejar la eliminación de la empresa
+    private fun eliminarEmpresa(nombreEmpresa: String, idCanton: Long) {
+        // Agrega aquí la lógica para eliminar la empresa de la base de datos
+        // Puedes utilizar el DBHelperProducto y su función correspondiente
+        // Por ejemplo:
+        val empresaEliminada = dbHelper.eliminarEmpresaPorNombreYIdCanton(nombreEmpresa, idCanton)
+
+        if (empresaEliminada) {
+            Toast.makeText(this, "Empresa eliminada con éxito", Toast.LENGTH_SHORT).show()
+
+            // Limpiar el Spinner de Empresas después de eliminar la empresa
+            empresasAdapter.clear()
+        } else {
+            Toast.makeText(this, "Error al eliminar la empresa", Toast.LENGTH_SHORT).show()
+        }
     }
 }
-
-
-
