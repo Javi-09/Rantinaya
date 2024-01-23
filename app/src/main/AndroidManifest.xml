@@ -20,19 +20,13 @@
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
         <activity
+            android:name="com.example.myapplication.ActualizarEmpresasServicio"
+            android:exported="false" />
+        <activity
+            android:name="com.example.myapplication.EliminarEmpresaProducto"
+            android:exported="false" />
+        <activity
             android:name="com.example.myapplication.ActualizarEmpresasProducto"
-            android:exported="false" />
-        <activity
-            android:name="com.example.myapplication.ActualizarEmpresasPorCanton"
-            android:exported="false" />
-        <activity
-            android:name="com.example.myapplication.ActualizarEmpresasTodos"
-            android:exported="false" />
-        <activity
-            android:name="com.example.myapplication.ActualizarProductosTodos"
-            android:exported="false" />
-        <activity
-            android:name="com.example.myapplication.ActualizarProducto"
             android:exported="false" />
         <activity
             android:name="com.example.myapplication.IngresarAdministrador"

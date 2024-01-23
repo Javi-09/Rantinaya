@@ -65,29 +65,44 @@
         android:textSize="18sp"
         android:textColor="#FFFFFF"
         android:background="#CA6F1E" />
-    <Button
-        android:id="@+id/btnEliminar"
-        android:layout_width="200dp"
+
+    <TextView
+        android:id="@+id/tvTitle2"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ELIMINAR"
+        android:textStyle="bold"
+        android:textSize="28sp"
+        android:textColor="#8E44AD"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:layout_below="@+id/btnAgregarAdmin" />
+
+
+    <Button
+        android:id="@+id/btnEliminarServicio"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="ELIMINAR-SERVICIO"
         android:layout_below="@+id/tvTitle2"
         android:layout_marginTop="32dp"
         android:layout_centerHorizontal="true"
         android:textSize="18sp"
         android:textColor="#FFFFFF"
-        android:background="#3498db" />
+        android:background="#27ae60" />
 
     <Button
-        android:id="@+id/btnEliminar"
+        android:id="@+id/btnEliminarProducto"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="ELIMINAR-SERVICIO"
+        android:text="ELIMINAR-PRODUCTO"
         android:textStyle="bold"
         android:textSize="18sp"
-        android:textColor="#8E44AD"
+        android:textColor="#FFFFFF"
+        android:background="#3498db"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
-        android:layout_below="@+id/btnAgregarAdmin" />
+        android:layout_below="@+id/btnEliminarServicio" />
 
     <TextView
         android:id="@+id/tvTitle3"
@@ -97,7 +112,7 @@
         android:textStyle="bold"
         android:textSize="28sp"
         android:textColor="#8E44AD"
-        android:layout_below="@+id/btnEliminar"
+        android:layout_below="@+id/btnEliminarProducto"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="24dp"/>
 
@@ -112,6 +127,18 @@
         android:textSize="18sp"
         android:textColor="#FFFFFF"
         android:background="#3498db" />
+
+    <Button
+        android:id="@+id/bntActualizarEmpresaServicio"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="EMPRESA SERVICIO"
+        android:layout_below="@+id/bntActualizarEmpresa"
+        android:layout_marginTop="16dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="18sp"
+        android:textColor="#FFFFFF"
+        android:background="#27ae60" />
 
 
 </RelativeLayout>

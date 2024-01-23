@@ -215,6 +215,98 @@ class DBHelperServicio(context: Context) : SQLiteOpenHelper(context, DATABASE_NA
     }
 
     // Fin de nueva función
+
+
+
+    //Funcion Actualizar Empresa
+    fun updateEmpresa(empresa: Empresa): Int {
+        val db = this.writableDatabase
+        val values = ContentValues().apply {
+            put(Empresa.COLUMN_NOMBRE, empresa.nombre)
+            put(Empresa.COLUMN_SLOGAN, empresa.slogan)
+            put(Empresa.COLUMN_NOMBRE_PROPIETARIO, empresa.nombrePropietario)
+            put(Empresa.COLUMN_FACEBOOK, empresa.facebook)
+            put(Empresa.COLUMN_INSTAGRAM, empresa.instagram)
+            put(Empresa.COLUMN_WHATSAPP, empresa.whatsapp)
+            put(Empresa.COLUMN_DIRECCION, empresa.direccion)
+            put(Empresa.COLUMN_VIDEO_URL, empresa.video_url)
+            put(Empresa.COLUMN_FK_EMPRESA_CANTON, empresa.fkEmpresaCanton)
+
+            // Manejo de valores nulos
+            putNullables(Empresa.COLUMN_IMAGEN_EMPRESA, empresa.imagen_empresa)
+            putNullables(Empresa.COLUMN_IMAGEN_PROPIETARIO, empresa.imagen_propietario)
+        }
+
+        val selection = "${Empresa.COLUMN_ID} = ?"
+        val selectionArgs = arrayOf(empresa.id.toString())
+
+        val rowsAffected = db.update(Empresa.TABLE_NAME, values, selection, selectionArgs)
+        db.close()
+
+        return rowsAffected
+    }
+
+    private fun ContentValues.putNullables(columnName: String, value: ByteArray?) {
+        if (value == null) {
+            putNull(columnName)
+        } else {
+            put(columnName, value)
+        }
+    }
+
+
+
+    //-----------
+
+    //funcion para actualizarempresaservicio
+
+    fun getEmpresaByNombre(nombre: String): Empresa? {
+        val db = this.readableDatabase
+        val cursor = db.query(
+            Empresa.TABLE_NAME,
+            null,
+            "${Empresa.COLUMN_NOMBRE} = ?",
+            arrayOf(nombre),
+            null,
+            null,
+            null
+        )
+        return if (cursor.moveToFirst()) {
+            val idIndex = cursor.getColumnIndex(Empresa.COLUMN_ID)
+            val nombreIndex = cursor.getColumnIndex(Empresa.COLUMN_NOMBRE)
+            val sloganIndex = cursor.getColumnIndex(Empresa.COLUMN_SLOGAN)
+            val nombrePropietarioIndex = cursor.getColumnIndex(Empresa.COLUMN_NOMBRE_PROPIETARIO)
+            val facebookIndex = cursor.getColumnIndex(Empresa.COLUMN_FACEBOOK)
+            val instagramIndex = cursor.getColumnIndex(Empresa.COLUMN_INSTAGRAM)
+            val whatsappIndex = cursor.getColumnIndex(Empresa.COLUMN_WHATSAPP)
+            val direccionIndex = cursor.getColumnIndex(Empresa.COLUMN_DIRECCION)
+            val imagenEmpresaIndex = cursor.getColumnIndex(Empresa.COLUMN_IMAGEN_EMPRESA)
+            val imagenPropietarioIndex = cursor.getColumnIndex(Empresa.COLUMN_IMAGEN_PROPIETARIO)
+            val videoUrlIndex = cursor.getColumnIndex(Empresa.COLUMN_VIDEO_URL)
+            val fkEmpresaCantonIndex = cursor.getColumnIndex(Empresa.COLUMN_FK_EMPRESA_CANTON)
+
+            val id = cursor.getLong(idIndex)
+            val empresaNombre = cursor.getString(nombreIndex)
+            val slogan = cursor.getString(sloganIndex)
+            val nombrePropietario = cursor.getString(nombrePropietarioIndex)
+            val facebook = cursor.getString(facebookIndex)
+            val instagram = cursor.getString(instagramIndex)
+            val whatsapp = cursor.getString(whatsappIndex)
+            val direccion = cursor.getString(direccionIndex)
+            val imagenEmpresa = cursor.getBlob(imagenEmpresaIndex)
+            val imagenPropietario = cursor.getBlob(imagenPropietarioIndex)
+            val videoUrl = cursor.getString(videoUrlIndex)
+            val fkEmpresaCanton = cursor.getLong(fkEmpresaCantonIndex)
+
+            Empresa(
+                id, empresaNombre, slogan, nombrePropietario, facebook, instagram, whatsapp,
+                direccion, imagenEmpresa, imagenPropietario, videoUrl, fkEmpresaCanton
+            )
+        } else {
+            null
+        }
+    }
+
     // Funciones para Producto
     // (Similar a Cantón)
 

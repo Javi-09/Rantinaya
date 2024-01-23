@@ -2,16 +2,16 @@ package com.example.myapplication.database
 
 data class Empresa(
     val id: Long = -1,
-    val nombre: String,
-    val slogan: String,
-    val nombrePropietario: String,
-    val facebook: String,
-    val instagram: String,
-    val whatsapp: String,
-    val direccion: String,
+    var nombre: String,
+    var slogan: String,
+    var nombrePropietario: String,
+    var facebook: String,
+    var instagram: String,
+    var whatsapp: String,
+    var direccion: String,
     val imagen_empresa: ByteArray?,
     val imagen_propietario: ByteArray?,
-    val video_url: String, // Nuevo campo para la URL del video
+    var video_url: String, // Nuevo campo para la URL del video
     val fkEmpresaCanton: Long
 ) {
     companion object {
