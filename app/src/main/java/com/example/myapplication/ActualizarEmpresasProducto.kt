@@ -1,8 +1,16 @@
 package com.example.myapplication
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.View
-import android.widget.*
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Spinner
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.e_commerce.R
 import com.example.myapplication.database.DBHelperProducto
@@ -11,8 +19,9 @@ import com.example.myapplication.database.Empresa
 
 class ActualizarEmpresasProducto : AppCompatActivity() {
 
-    private lateinit var spinnerCanton: Spinner
-    private lateinit var spinnerEmpresa: Spinner
+    private lateinit var dbHelper: DBHelperProducto
+    private lateinit var spinnerCantones: Spinner
+    private lateinit var spinnerEmpresas: Spinner
     private lateinit var editTextNombreEmpresa: EditText
     private lateinit var editTextSlogan: EditText
     private lateinit var editTextNombrePropietario: EditText
@@ -21,23 +30,20 @@ class ActualizarEmpresasProducto : AppCompatActivity() {
     private lateinit var editTextInstagram: EditText
     private lateinit var editTextWhatsapp: EditText
     private lateinit var editDireccion: EditText
+    private lateinit var btnGuardarEmpresa: Button
     private lateinit var btnSeleccionarImagenEmpresa: Button
     private lateinit var btnSeleccionarImagenPropietario: Button
-    private lateinit var btnGuardarEmpresa: Button
 
-    private lateinit var dbHelper: DBHelperProducto
-    private lateinit var cantones: List<Canton>
-    private lateinit var empresas: List<Empresa>
+    private val PICK_IMAGE_REQUEST_EMPRESA = 1
+    private val PICK_IMAGE_REQUEST_PROPIETARIO = 2
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_actualizar_empresas_producto)
 
         dbHelper = DBHelperProducto(this)
-
-        // Inicializar vistas
-        spinnerCanton = findViewById(R.id.spinnerCanton)
-        spinnerEmpresa = findViewById(R.id.spinnerEmpresa)
+        spinnerCantones = findViewById(R.id.spinnerCanton)
+        spinnerEmpresas = findViewById(R.id.spinnerEmpresa)
         editTextNombreEmpresa = findViewById(R.id.editTextNombreEmpresa)
         editTextSlogan = findViewById(R.id.editTextSlogan)
         editTextNombrePropietario = findViewById(R.id.editTextNombrePropietario)
@@ -46,97 +52,120 @@ class ActualizarEmpresasProducto : AppCompatActivity() {
         editTextInstagram = findViewById(R.id.editTextInstagram)
         editTextWhatsapp = findViewById(R.id.editTextWhatsapp)
         editDireccion = findViewById(R.id.editDireccion)
+        btnGuardarEmpresa = findViewById(R.id.btnGuardarEmpresa)
         btnSeleccionarImagenEmpresa = findViewById(R.id.btnSeleccionarImagenEmpresa)
         btnSeleccionarImagenPropietario = findViewById(R.id.btnSeleccionarImagenPropietario)
-        btnGuardarEmpresa = findViewById(R.id.btnGuardarEmpresa)
 
-        // Llenar el spinner de cantones
-        cantones = dbHelper.getAllCantones()
-        val cantonAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, cantones)
-        cantonAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinnerCanton.adapter = cantonAdapter
+        // Obtener la lista de cantones desde la base de datos
+        val cantonesFromDB = dbHelper.getAllCantones()
+        val cantones = mutableListOf<String>()
+        cantones.add("Seleccione el cantón")
+        cantones.addAll(cantonesFromDB.map { it.nombreCanton })
 
-        // Configurar el Listener para el spinner de cantones
-        spinnerCanton.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parentView: AdapterView<*>,
-                selectedItemView: View?,
-                position: Int,
-                id: Long
-            ) {
-                // Cuando se selecciona un cantón, cargar las empresas asociadas
-                loadEmpresasForSelectedCanton(cantones[position].id)
+        // Crear un adaptador para el Spinner de Cantones
+        val cantonesAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, cantones)
+        cantonesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerCantones.adapter = cantonesAdapter
+
+        // Crear un adaptador vacío para el Spinner de Empresas
+        val empresasAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, mutableListOf<String>())
+        empresasAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerEmpresas.adapter = empresasAdapter
+
+        // Mostrar mensaje antes de seleccionar el cantón
+        Toast.makeText(this, "Seleccione un cantón", Toast.LENGTH_SHORT).show()
+
+        // Manejar la selección del Spinner de Cantones
+        spinnerCantones.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if (position != 0) {
+                    val selectedCanton = cantonesFromDB[position - 1]
+                    val empresasByCanton = dbHelper.getEmpresasByCantonId(selectedCanton.id)
+                    val empresasNombres = empresasByCanton.map { it.nombre }
+
+                    empresasAdapter.clear()
+                    empresasAdapter.addAll(empresasNombres)
+                } else {
+                    empresasAdapter.clear()
+                }
             }
 
-            override fun onNothingSelected(parentView: AdapterView<*>) {
-                // No se necesita hacer nada aquí
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // Opcional: manejar la situación cuando no se selecciona nada
             }
+        })
+
+        // Manejar la selección del Spinner de Empresas
+        spinnerEmpresas.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                val selectedEmpresa = empresasAdapter.getItem(position)
+
+                // Mostrar mensaje antes de seleccionar la empresa
+                if (selectedEmpresa == null || selectedEmpresa == "Seleccione la empresa") {
+                    mostrarMensaje("Seleccione una empresa antes de actualizar")
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // Opcional: manejar la situación cuando no se selecciona nada
+            }
+        })
+
+        btnSeleccionarImagenEmpresa.setOnClickListener {
+            abrirGaleriaImagenes(PICK_IMAGE_REQUEST_EMPRESA)
         }
 
-        // Configurar el Listener para el botón de guardar empresa
+        btnSeleccionarImagenPropietario.setOnClickListener {
+            abrirGaleriaImagenes(PICK_IMAGE_REQUEST_PROPIETARIO)
+        }
+
         btnGuardarEmpresa.setOnClickListener {
-            guardarEmpresa()
+            val cantonSeleccionado = spinnerCantones.selectedItem.toString()
+            val empresaNombreSeleccionada = spinnerEmpresas.selectedItem.toString()
+
+            if (cantonSeleccionado == "Seleccione el cantón" || empresaNombreSeleccionada == "Seleccione la empresa") {
+                mostrarMensaje("Seleccione un cantón y una empresa antes de guardar")
+            } else {
+                // Obtener datos de la empresa seleccionada
+                var empresa = dbHelper.getEmpresaByNombre(empresaNombreSeleccionada) // Cambiar a 'var'
+
+                if (empresa != null) {
+                    // Actualizar los datos de la empresa (adaptar según tus necesidades)
+                    empresa.nombre = editTextNombreEmpresa.text.toString()
+                    empresa.slogan = editTextSlogan.text.toString()
+                    empresa.nombrePropietario = editTextNombrePropietario.text.toString()
+                    empresa.video_url = editVideoUrl.text.toString()
+                    empresa.facebook = editTextFacebook.text.toString()
+                    empresa.instagram = editTextInstagram.text.toString()
+                    empresa.whatsapp = editTextWhatsapp.text.toString()
+                    empresa.direccion = editDireccion.text.toString()
+
+                    // Lógica para actualizar la empresa en la base de datos
+                    dbHelper.updateEmpresa(empresa)
+
+                    mostrarMensaje("Empresa actualizada con éxito")
+                } else {
+                    mostrarMensaje("Error al obtener datos de la empresa")
+                }
+            }
         }
     }
 
-    private fun loadEmpresasForSelectedCanton(cantonId: Long) {
-        // Llenar el spinner de empresas asociadas al cantón seleccionado
-        empresas = dbHelper.getEmpresasByCantonId(cantonId)
-        val empresaAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, empresas)
-        empresaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinnerEmpresa.adapter = empresaAdapter
+    private fun abrirGaleriaImagenes(requestCode: Int) {
+        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        startActivityForResult(intent, requestCode)
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
 
-    private fun guardarEmpresa() {
-        // Validar campos obligatorios
-        if (editTextNombreEmpresa.text.isNullOrBlank() || editTextSlogan.text.isNullOrBlank()) {
-            Toast.makeText(this, "Nombre y Slogan son campos obligatorios", Toast.LENGTH_SHORT)
-                .show()
-            return
+        if (resultCode == Activity.RESULT_OK && data != null) {
+            // Puedes realizar alguna lógica adicional aquí si es necesario
         }
+    }
 
-        try {
-            // Obtener datos de las vistas
-            val selectedEmpresa = spinnerEmpresa.selectedItem as Empresa
-            val nombreEmpresa = editTextNombreEmpresa.text.toString()
-            val slogan = editTextSlogan.text.toString()
-            val nombrePropietario = editTextNombrePropietario.text.toString()
-            val videoUrl = editVideoUrl.text.toString()
-            val facebook = editTextFacebook.text.toString()
-            val instagram = editTextInstagram.text.toString()
-            val whatsapp = editTextWhatsapp.text.toString()
-            val direccion = editDireccion.text.toString()
-
-            // Actualizar datos de la empresa en la base de datos
-            val updatedEmpresa = Empresa(
-                id = selectedEmpresa.id,
-                nombre = nombreEmpresa,
-                slogan = slogan,
-                nombrePropietario = nombrePropietario,
-                facebook = facebook,
-                instagram = instagram,
-                whatsapp = whatsapp,
-                direccion = direccion,
-                imagen_empresa = selectedEmpresa.imagen_empresa,
-                imagen_propietario = selectedEmpresa.imagen_propietario,
-                video_url = videoUrl,
-                fkEmpresaCanton = selectedEmpresa.fkEmpresaCanton
-            )
-
-            dbHelper.updateEmpresa(updatedEmpresa)
-
-            // Actualizar el spinnerEmpresa para reflejar los cambios
-            loadEmpresasForSelectedCanton(spinnerCanton.selectedItemPosition.toLong())
-
-            // Mostrar mensaje de éxito
-            Toast.makeText(this, "Empresa actualizada correctamente", Toast.LENGTH_SHORT).show()
-
-        } catch (e: Exception) {
-            // Manejar cualquier error durante la actualización
-            Toast.makeText(this, "Error al actualizar la empresa", Toast.LENGTH_SHORT).show()
-            e.printStackTrace()
-        }
+    private fun mostrarMensaje(mensaje: String) {
+        // Lógica para mostrar mensajes (Toast, Snackbar, etc.)
+        Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show()
     }
 }
-
