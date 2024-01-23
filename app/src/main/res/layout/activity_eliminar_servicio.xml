@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.myapplication.EliminarServicio">
+
+  <!-- Spinner de Cantones -->
+  <Spinner
+      android:id="@+id/spinnerCantones"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="16dp"
+      android:background="#27ae60"
+      android:layout_marginStart="16dp"
+      android:layout_marginEnd="16dp"/>
+
+  <!-- Spinner de Empresas -->
+  <Spinner
+      android:id="@+id/spinnerEmpresas"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/spinnerCantones"
+      android:layout_marginTop="16dp"
+      android:layout_marginStart="16dp"
+      android:layout_marginEnd="16dp"/>
+
+  <!-- Botón Eliminar -->
+  <Button
+      android:id="@+id/btnEliminar"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/spinnerEmpresas"
+      android:layout_centerHorizontal="true"
+      android:textColor="#8E44AD"
+      android:text="ELIMINAR"
+      android:background="#3498db"
+      android:layout_marginTop="24dp"/>
+
+</RelativeLayout>

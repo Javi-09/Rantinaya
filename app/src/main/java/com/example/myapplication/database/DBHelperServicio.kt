@@ -228,4 +228,25 @@ class DBHelperServicio(context: Context) : SQLiteOpenHelper(context, DATABASE_NA
         this.compress(Bitmap.CompressFormat.PNG, 0, stream)
         return stream.toByteArray()
     }
+
+    // En la clase DBHelperServicio
+
+    fun eliminarServicio(canton: String, empresa: String): Boolean {
+        val db = this.writableDatabase
+        val whereClause =
+            "${Servicio.COLUMN_FK_SERVICIO_EMPRESA} IN " +
+                    "(SELECT ${Empresa.COLUMN_ID} FROM ${Empresa.TABLE_NAME} " +
+                    "WHERE ${Empresa.COLUMN_NOMBRE} = ? AND ${Empresa.COLUMN_FK_EMPRESA_CANTON} IN " +
+                    "(SELECT ${Canton.COLUMN_ID} FROM ${Canton.TABLE_NAME} WHERE ${Canton.COLUMN_NOMBRE_CANTON} = ?))"
+        val whereArgs = arrayOf(empresa, canton)
+
+        return try {
+            db.delete(Servicio.TABLE_NAME, whereClause, whereArgs) > 0
+        } catch (e: Exception) {
+            e.printStackTrace()
+            false
+        } finally {
+            db.close()
+        }
+    }
 }
