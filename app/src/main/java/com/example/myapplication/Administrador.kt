@@ -16,6 +16,7 @@ class Administrador : AppCompatActivity() {
         val btnServicio: Button = findViewById(R.id.btnServicio)
         val btnProducto: Button = findViewById(R.id.btnProducto)
         val btnAgregarAdmin: Button = findViewById(R.id.btnAgregarAdmin)
+        val btnActualizarEmpresa: Button = findViewById(R.id.bntActualizarEmpresa) // Corrected ID
 
 
 
@@ -37,5 +38,10 @@ class Administrador : AppCompatActivity() {
             startActivity(intent)
         }
 
+        btnActualizarEmpresa.setOnClickListener {
+            // Acción al presionar el botón de Producto
+            val intent = Intent(this, ActualizarEmpresasProducto::class.java)
+            startActivity(intent)
+        }
     }
 }

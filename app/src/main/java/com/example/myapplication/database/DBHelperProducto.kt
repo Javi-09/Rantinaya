@@ -218,6 +218,36 @@ class DBHelperProducto(context: Context) : SQLiteOpenHelper(context, DATABASE_NA
 
     // Fin de nueva función
 
+    //Funcion Actualizar Empresa
+    fun updateEmpresa(empresa: Empresa): Int {
+        val db = this.writableDatabase
+        val values = ContentValues().apply {
+            put(Empresa.COLUMN_NOMBRE, empresa.nombre)
+            put(Empresa.COLUMN_SLOGAN, empresa.slogan)
+            put(Empresa.COLUMN_NOMBRE_PROPIETARIO, empresa.nombrePropietario)
+            put(Empresa.COLUMN_FACEBOOK, empresa.facebook)
+            put(Empresa.COLUMN_INSTAGRAM, empresa.instagram)
+            put(Empresa.COLUMN_WHATSAPP, empresa.whatsapp)
+            put(Empresa.COLUMN_DIRECCION, empresa.direccion)
+            put(Empresa.COLUMN_IMAGEN_EMPRESA, empresa.imagen_empresa)
+            put(Empresa.COLUMN_IMAGEN_PROPIETARIO, empresa.imagen_propietario)
+            put(Empresa.COLUMN_VIDEO_URL, empresa.video_url)
+            put(Empresa.COLUMN_FK_EMPRESA_CANTON, empresa.fkEmpresaCanton)
+        }
+
+        val selection = "${Empresa.COLUMN_ID} = ?"
+        val selectionArgs = arrayOf(empresa.id.toString())
+
+        val rowsAffected = db.update(Empresa.TABLE_NAME, values, selection, selectionArgs)
+        db.close()
+
+        return rowsAffected
+    }
+
+
+    //-----------
+
+
     // Funciones para Producto
     // (Similar a Cantón)
 
