@@ -2,6 +2,7 @@ package com.example.myapplication.database
 
 import android.content.ContentValues
 import android.content.Context
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.graphics.Bitmap
@@ -209,7 +210,7 @@ class DBHelperProducto(context: Context) : SQLiteOpenHelper(context, DATABASE_NA
 
             Empresa(
                 id, nombre, slogan, nombrePropietario, facebook, instagram, whatsapp,
-                 direccion, imagenEmpresa, imagenPropietario, videoUrl, fkEmpresaCanton // Actualización del campo de video
+                direccion, imagenEmpresa, imagenPropietario, videoUrl, fkEmpresaCanton // Actualización del campo de video
             )
         } else {
             null
@@ -217,6 +218,105 @@ class DBHelperProducto(context: Context) : SQLiteOpenHelper(context, DATABASE_NA
     }
 
     // Fin de nueva función
+// ...
+
+    fun getEmpresaByName(nombre: String): Empresa? {
+        val db = this.readableDatabase
+        val cursor = db.query(
+            Empresa.TABLE_NAME,
+            null,
+            "${Empresa.COLUMN_NOMBRE} = ?",
+            arrayOf(nombre),
+            null,
+            null,
+            null
+        )
+        return if (cursor.moveToFirst()) {
+            val empresa = getEmpresaFromCursor(cursor)
+            cursor.close()
+            empresa
+        } else {
+            cursor.close()
+            null
+        }
+    }
+
+    private fun getEmpresaFromCursor(cursor: Cursor): Empresa {
+        val idIndex = cursor.getColumnIndex(Empresa.COLUMN_ID)
+        val nombreIndex = cursor.getColumnIndex(Empresa.COLUMN_NOMBRE)
+        val sloganIndex = cursor.getColumnIndex(Empresa.COLUMN_SLOGAN)
+        val nombrePropietarioIndex = cursor.getColumnIndex(Empresa.COLUMN_NOMBRE_PROPIETARIO)
+        val facebookIndex = cursor.getColumnIndex(Empresa.COLUMN_FACEBOOK)
+        val instagramIndex = cursor.getColumnIndex(Empresa.COLUMN_INSTAGRAM)
+        val whatsappIndex = cursor.getColumnIndex(Empresa.COLUMN_WHATSAPP)
+        val direccionIndex = cursor.getColumnIndex(Empresa.COLUMN_DIRECCION)
+        val imagenEmpresaIndex = cursor.getColumnIndex(Empresa.COLUMN_IMAGEN_EMPRESA)
+        val imagenPropietarioIndex = cursor.getColumnIndex(Empresa.COLUMN_IMAGEN_PROPIETARIO)
+        val videoUrlIndex = cursor.getColumnIndex(Empresa.COLUMN_VIDEO_URL)
+        val fkEmpresaCantonIndex = cursor.getColumnIndex(Empresa.COLUMN_FK_EMPRESA_CANTON)
+
+        val id = cursor.getLong(idIndex)
+        val nombre = cursor.getString(nombreIndex)
+        val slogan = cursor.getString(sloganIndex)
+        val nombrePropietario = cursor.getString(nombrePropietarioIndex)
+        val facebook = cursor.getString(facebookIndex)
+        val instagram = cursor.getString(instagramIndex)
+        val whatsapp = cursor.getString(whatsappIndex)
+        val direccion = cursor.getString(direccionIndex)
+        val imagenEmpresa = cursor.getBlob(imagenEmpresaIndex)
+        val imagenPropietario = cursor.getBlob(imagenPropietarioIndex)
+        val videoUrl = cursor.getString(videoUrlIndex)
+        val fkEmpresaCanton = cursor.getLong(fkEmpresaCantonIndex)
+
+        return Empresa(
+            id, nombre, slogan, nombrePropietario, facebook, instagram, whatsapp,
+            direccion, imagenEmpresa, imagenPropietario, videoUrl, fkEmpresaCanton
+        )
+    }
+
+// ...
+// En tu clase DBHelperProducto
+
+    fun eliminarEmpresaPorNombreYIdCanton(nombreEmpresa: String, idCanton: Long): Boolean {
+        val db = this.writableDatabase
+
+        // Asegúrate de manejar el caso donde la columna de nombre tenga el mismo nombre que la variable
+        val whereClause = "${Empresa.COLUMN_NOMBRE} = ? AND ${Empresa.COLUMN_FK_EMPRESA_CANTON} = ?"
+        val whereArgs = arrayOf(nombreEmpresa, idCanton.toString())
+
+        // Intenta realizar la eliminación y maneja cualquier excepción
+        return try {
+            db.delete(Empresa.TABLE_NAME, whereClause, whereArgs) > 0
+        } catch (e: Exception) {
+            // Puedes imprimir el mensaje de error si es necesario
+            e.printStackTrace()
+            false
+        } finally {
+            db.close()
+        }
+    }
+
+// En tu clase DBHelperProducto
+
+    fun eliminarEmpresaPorNombre(nombreEmpresa: String): Boolean {
+        val db = this.writableDatabase
+
+        // Asegúrate de manejar el caso donde la columna de nombre tenga el mismo nombre que la variable
+        val whereClause = "${Empresa.COLUMN_NOMBRE} = ?"
+        val whereArgs = arrayOf(nombreEmpresa)
+
+        // Intenta realizar la eliminación y maneja cualquier excepción
+        return try {
+            db.delete(Empresa.TABLE_NAME, whereClause, whereArgs) > 0
+        } catch (e: Exception) {
+            // Puedes imprimir el mensaje de error si es necesario
+            e.printStackTrace()
+            false
+        } finally {
+            db.close()
+        }
+    }
+
 
     //Funcion Actualizar Empresa
     fun updateEmpresa(empresa: Empresa): Int {
@@ -246,10 +346,6 @@ class DBHelperProducto(context: Context) : SQLiteOpenHelper(context, DATABASE_NA
 
 
     //-----------
-
-
-    // Funciones para Producto
-    // (Similar a Cantón)
 
     companion object {
         const val DATABASE_VERSION = 1

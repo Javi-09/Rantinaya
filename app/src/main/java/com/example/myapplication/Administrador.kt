@@ -12,13 +12,11 @@ class Administrador : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_administrador)
 
-
         val btnServicio: Button = findViewById(R.id.btnServicio)
         val btnProducto: Button = findViewById(R.id.btnProducto)
         val btnAgregarAdmin: Button = findViewById(R.id.btnAgregarAdmin)
         val btnActualizarEmpresa: Button = findViewById(R.id.bntActualizarEmpresa) // Corrected ID
-
-
+        val btnEliminar: Button = findViewById(R.id.btnEliminar) // Agregado el botón Eliminar
 
         btnServicio.setOnClickListener {
             // Acción al presionar el botón de Servicio
@@ -42,6 +40,13 @@ class Administrador : AppCompatActivity() {
             // Acción al presionar el botón de Producto
             val intent = Intent(this, ActualizarEmpresasProducto::class.java)
             startActivity(intent)
+        }
+
+        btnEliminar.setOnClickListener {
+            // Acción al presionar el botón de Eliminar
+            val intent = Intent(this, EliminarEmpresaProducto::class.java)
+            startActivity(intent)
+            // Agrega aquí el código para manejar la acción de eliminación
         }
     }
 }
