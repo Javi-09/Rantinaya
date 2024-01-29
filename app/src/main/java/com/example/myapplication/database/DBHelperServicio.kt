@@ -351,7 +351,70 @@ class DBHelperServicio(context: Context) : SQLiteOpenHelper(context, DATABASE_NA
         }
     }
 
-    // Funciones para Producto
+    // Función para obtener una empresa por nombre y ID de cantón
+    fun getEmpresaByNombreYIdCanton(nombreEmpresa: String, idCanton: Long): Empresa? {
+        val db = this.readableDatabase
+        val cursor = db.query(
+            Empresa.TABLE_NAME,
+            null,
+            "${Empresa.COLUMN_NOMBRE} = ? AND ${Empresa.COLUMN_FK_EMPRESA_CANTON} = ?",
+            arrayOf(nombreEmpresa, idCanton.toString()),
+            null,
+            null,
+            null
+        )
+        return if (cursor.moveToFirst()) {
+            val idIndex = cursor.getColumnIndex(Empresa.COLUMN_ID)
+            val nombreIndex = cursor.getColumnIndex(Empresa.COLUMN_NOMBRE)
+            val sloganIndex = cursor.getColumnIndex(Empresa.COLUMN_SLOGAN)
+            val nombrePropietarioIndex = cursor.getColumnIndex(Empresa.COLUMN_NOMBRE_PROPIETARIO)
+            val facebookIndex = cursor.getColumnIndex(Empresa.COLUMN_FACEBOOK)
+            val instagramIndex = cursor.getColumnIndex(Empresa.COLUMN_INSTAGRAM)
+            val whatsappIndex = cursor.getColumnIndex(Empresa.COLUMN_WHATSAPP)
+            val direccionIndex = cursor.getColumnIndex(Empresa.COLUMN_DIRECCION)
+            val imagenEmpresaIndex = cursor.getColumnIndex(Empresa.COLUMN_IMAGEN_EMPRESA)
+            val imagenPropietarioIndex = cursor.getColumnIndex(Empresa.COLUMN_IMAGEN_PROPIETARIO)
+            val videoUrlIndex = cursor.getColumnIndex(Empresa.COLUMN_VIDEO_URL)
+            val fkEmpresaCantonIndex = cursor.getColumnIndex(Empresa.COLUMN_FK_EMPRESA_CANTON)
+
+            val id = cursor.getLong(idIndex)
+            val empresaNombre = cursor.getString(nombreIndex)
+            val slogan = cursor.getString(sloganIndex)
+            val nombrePropietario = cursor.getString(nombrePropietarioIndex)
+            val facebook = cursor.getString(facebookIndex)
+            val instagram = cursor.getString(instagramIndex)
+            val whatsapp = cursor.getString(whatsappIndex)
+            val direccion = cursor.getString(direccionIndex)
+            val imagenEmpresa = cursor.getBlob(imagenEmpresaIndex)
+            val imagenPropietario = cursor.getBlob(imagenPropietarioIndex)
+            val videoUrl = cursor.getString(videoUrlIndex)
+            val fkEmpresaCanton = cursor.getLong(fkEmpresaCantonIndex)
+
+            Empresa(
+                id, empresaNombre, slogan, nombrePropietario, facebook, instagram, whatsapp,
+                direccion, imagenEmpresa, imagenPropietario, videoUrl, fkEmpresaCanton
+            )
+        } else {
+            null
+        }
+    }
+
+    // Función para insertar un servicio
+    fun insertServicio(servicio: Servicio): Long {
+        val db = this.writableDatabase
+        val values = ContentValues().apply {
+            put(Servicio.COLUMN_NOMBRE, servicio.nombre)
+            put(Servicio.COLUMN_IMAGEN, servicio.imagen)
+            put(Servicio.COLUMN_PRECIO, servicio.precio)
+            put(Servicio.COLUMN_DESCRIPCION, servicio.descripcion)
+            put(Servicio.COLUMN_FK_SERVICIO_EMPRESA, servicio.fkProductoEmpresa)
+        }
+
+        return db.insert(Servicio.TABLE_NAME, null, values)
+    }
+    //----------------------------------------
+
+
     // (Similar a Cantón)
 
     companion object {

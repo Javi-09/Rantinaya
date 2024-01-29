@@ -349,6 +349,112 @@ class DBHelperProducto(context: Context) : SQLiteOpenHelper(context, DATABASE_NA
     }
     //--------------
 
+    //Funcion para listar productos de empresa
+    fun getProductosByEmpresaId(empresaId: Long): List<Producto> {
+        val productos = mutableListOf<Producto>()
+        val db = this.readableDatabase
+        val cursor = db.query(
+            Producto.TABLE_NAME,
+            null,
+            "${Producto.COLUMN_FK_PRODUCTO_EMPRESA} = ?",
+            arrayOf(empresaId.toString()),
+            null,
+            null,
+            null
+        )
+
+        while (cursor.moveToNext()) {
+            val idIndex = cursor.getColumnIndex(Producto.COLUMN_ID)
+            val nombreIndex = cursor.getColumnIndex(Producto.COLUMN_NOMBRE)
+            val imagenIndex = cursor.getColumnIndex(Producto.COLUMN_IMAGEN)
+            val precioIndex = cursor.getColumnIndex(Producto.COLUMN_PRECIO)
+            val descripcionIndex = cursor.getColumnIndex(Producto.COLUMN_DESCRIPCION)
+            val fkProductoEmpresaIndex = cursor.getColumnIndex(Producto.COLUMN_FK_PRODUCTO_EMPRESA)
+
+            val id = cursor.getLong(idIndex)
+            val nombre = cursor.getString(nombreIndex)
+            val imagen = cursor.getBlob(imagenIndex)
+            val precio = cursor.getDouble(precioIndex)
+            val descripcion = cursor.getString(descripcionIndex)
+            val fkProductoEmpresa = cursor.getLong(fkProductoEmpresaIndex)
+
+            val producto = Producto(id, nombre, imagen, precio, descripcion, fkProductoEmpresa)
+            productos.add(producto)
+        }
+
+        cursor.close()
+        return productos
+    }
+
+    //------------
+
+    //Funcion para insertar productos
+    fun getEmpresaByNombreYIdCanton(nombreEmpresa: String, idCanton: Long): Empresa? {
+        val db = this.readableDatabase
+        val cursor = db.query(
+            Empresa.TABLE_NAME,
+            null,
+            "${Empresa.COLUMN_NOMBRE} = ? AND ${Empresa.COLUMN_FK_EMPRESA_CANTON} = ?",
+            arrayOf(nombreEmpresa, idCanton.toString()),
+            null,
+            null,
+            null
+        )
+        return if (cursor.moveToFirst()) {
+            val idIndex = cursor.getColumnIndex(Empresa.COLUMN_ID)
+            val nombreIndex = cursor.getColumnIndex(Empresa.COLUMN_NOMBRE)
+            val sloganIndex = cursor.getColumnIndex(Empresa.COLUMN_SLOGAN)
+            val nombrePropietarioIndex = cursor.getColumnIndex(Empresa.COLUMN_NOMBRE_PROPIETARIO)
+            val facebookIndex = cursor.getColumnIndex(Empresa.COLUMN_FACEBOOK)
+            val instagramIndex = cursor.getColumnIndex(Empresa.COLUMN_INSTAGRAM)
+            val whatsappIndex = cursor.getColumnIndex(Empresa.COLUMN_WHATSAPP)
+            val direccionIndex = cursor.getColumnIndex(Empresa.COLUMN_DIRECCION)
+            val imagenEmpresaIndex = cursor.getColumnIndex(Empresa.COLUMN_IMAGEN_EMPRESA)
+            val imagenPropietarioIndex = cursor.getColumnIndex(Empresa.COLUMN_IMAGEN_PROPIETARIO)
+            val videoUrlIndex = cursor.getColumnIndex(Empresa.COLUMN_VIDEO_URL)
+            val fkEmpresaCantonIndex = cursor.getColumnIndex(Empresa.COLUMN_FK_EMPRESA_CANTON)
+
+            val id = cursor.getLong(idIndex)
+            val empresaNombre = cursor.getString(nombreIndex)
+            val slogan = cursor.getString(sloganIndex)
+            val nombrePropietario = cursor.getString(nombrePropietarioIndex)
+            val facebook = cursor.getString(facebookIndex)
+            val instagram = cursor.getString(instagramIndex)
+            val whatsapp = cursor.getString(whatsappIndex)
+            val direccion = cursor.getString(direccionIndex)
+            val imagenEmpresa = cursor.getBlob(imagenEmpresaIndex)
+            val imagenPropietario = cursor.getBlob(imagenPropietarioIndex)
+            val videoUrl = cursor.getString(videoUrlIndex)
+            val fkEmpresaCanton = cursor.getLong(fkEmpresaCantonIndex)
+
+            Empresa(
+                id, empresaNombre, slogan, nombrePropietario, facebook, instagram, whatsapp,
+                direccion, imagenEmpresa, imagenPropietario, videoUrl, fkEmpresaCanton
+            )
+        } else {
+            null
+        }
+    }
+
+
+
+
+    fun insertProducto(producto: Producto): Long {
+        val db = this.writableDatabase
+        val values = ContentValues().apply {
+            put(Producto.COLUMN_NOMBRE, producto.nombre)
+            put(Producto.COLUMN_IMAGEN, producto.imagen)
+            put(Producto.COLUMN_PRECIO, producto.precio)
+            put(Producto.COLUMN_DESCRIPCION, producto.descripcion)
+            put(Producto.COLUMN_FK_PRODUCTO_EMPRESA, producto.fkProductoEmpresa)
+        }
+
+        return db.insert(Producto.TABLE_NAME, null, values)
+    }
+
+
+    //--------------------------
+
     // Funciones para Producto
     // (Similar a Cantón)
 

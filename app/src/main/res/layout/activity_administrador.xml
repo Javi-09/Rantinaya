@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.myapplication.Administrador">
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
     <Button
         android:id="@+id/btnBack"
@@ -66,6 +70,30 @@
         android:textColor="#FFFFFF"
         android:background="#CA6F1E" />
 
+        <Button
+            android:id="@+id/btnInProducto"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Producto"
+            android:layout_below="@+id/btnAgregarAdmin"
+            android:layout_marginTop="16dp"
+            android:layout_centerHorizontal="true"
+            android:textSize="18sp"
+            android:textColor="#FFFFFF"
+            android:background="#3498db" />
+
+        <Button
+            android:id="@+id/btnInServicio"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Servicio"
+            android:layout_below="@+id/btnInProducto"
+            android:layout_marginTop="16dp"
+            android:layout_centerHorizontal="true"
+            android:textSize="18sp"
+            android:textColor="#FFFFFF"
+            android:background="#27ae60" />
+
     <TextView
         android:id="@+id/tvTitle2"
         android:layout_width="wrap_content"
@@ -76,14 +104,14 @@
         android:textColor="#8E44AD"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="24dp"
-        android:layout_below="@+id/btnAgregarAdmin" />
+        android:layout_below="@+id/btnInServicio" />
 
 
     <Button
         android:id="@+id/btnEliminarServicio"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="ELIMINAR-SERVICIO"
+        android:text="EMPRESA-SERVICIO"
         android:layout_below="@+id/tvTitle2"
         android:layout_marginTop="32dp"
         android:layout_centerHorizontal="true"
@@ -95,7 +123,7 @@
         android:id="@+id/btnEliminarProducto"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="ELIMINAR-PRODUCTO"
+        android:text="EMPRESA-PRODUCTO"
         android:textStyle="bold"
         android:textSize="18sp"
         android:textColor="#FFFFFF"
@@ -140,5 +168,7 @@
         android:textColor="#FFFFFF"
         android:background="#27ae60" />
 
+        </RelativeLayout>
 
-</RelativeLayout>
+
+</ScrollView>

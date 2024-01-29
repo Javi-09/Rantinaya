@@ -12,12 +12,12 @@ import android.widget.MediaController
 import android.widget.TextView
 import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.e_commerce.R
 import com.example.myapplication.database.DBHelperProducto
 import com.example.myapplication.database.Empresa
-import java.io.ByteArrayInputStream
-import java.io.InputStream
-import java.nio.charset.Charset
+import com.example.myapplication.database.Producto
 
 class DetalleEmpresaProducto : AppCompatActivity() {
 
@@ -29,7 +29,9 @@ class DetalleEmpresaProducto : AppCompatActivity() {
     private lateinit var imageViewInstagram: ImageView
     private lateinit var imageViewWhatsapp: ImageView
     private lateinit var videoViewEmpresa: VideoView
+    private lateinit var recyclerViewProductos: RecyclerView
     private lateinit var databaseHelper: DBHelperProducto
+    private lateinit var adaptadorProductos: AdaptadorProductos
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +46,7 @@ class DetalleEmpresaProducto : AppCompatActivity() {
         imageViewInstagram = findViewById(R.id.imageViewInstagram)
         imageViewWhatsapp = findViewById(R.id.imageViewWhatsapp)
         videoViewEmpresa = findViewById(R.id.videoViewEmpresa)
+        recyclerViewProductos = findViewById(R.id.recyclerViewProductos)
 
         // Inicializar DBHelper
         databaseHelper = DBHelperProducto(this)
@@ -53,6 +56,11 @@ class DetalleEmpresaProducto : AppCompatActivity() {
 
         // Obtener datos de la empresa desde la base de datos
         val empresa = databaseHelper.getEmpresaById(empresaId)
+
+        // Configurar RecyclerView para productos
+        adaptadorProductos = AdaptadorProductos()
+        recyclerViewProductos.adapter = adaptadorProductos
+        recyclerViewProductos.layoutManager = LinearLayoutManager(this)
 
         // Mostrar datos en las vistas
         mostrarDetallesEmpresa(empresa)
@@ -109,8 +117,6 @@ class DetalleEmpresaProducto : AppCompatActivity() {
                 videoViewEmpresa.visibility = View.GONE
             }
 
-            //------------
-
             // Configurar clic del botón "Ver en Mapa"
             btnVerMapa.setOnClickListener {
                 val urlDireccion = empresa.direccion
@@ -135,9 +141,12 @@ class DetalleEmpresaProducto : AppCompatActivity() {
                 val phoneNumber = empresa?.whatsapp
                 redireccionarWhatsapp(phoneNumber)
             }
+
+            // Obtener y mostrar productos relacionados con la empresa
+            val productos = databaseHelper.getProductosByEmpresaId(empresa.id)
+            adaptadorProductos.actualizarProductos(productos)
         }
     }
-
 
     private fun redireccionarUrl(url: String?, appName: String) {
         if (!url.isNullOrBlank()) {

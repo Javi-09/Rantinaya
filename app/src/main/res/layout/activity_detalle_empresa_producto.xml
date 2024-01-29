@@ -25,7 +25,8 @@
             android:textSize="24sp"
             android:textStyle="bold"
             android:layout_below="@id/ViewPrincipal"
-            android:padding="8dp"/>
+            android:padding="8dp"
+            android:gravity="center"/>
 
         <VideoView
             android:id="@+id/videoViewEmpresa"
@@ -65,7 +66,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Ver en Mapa"
-            android:background="@color/celeste"
+            android:background="@color/verdeMapa"
             android:textColor="#FFFFFF"
             android:layout_below="@id/recyclerViewProductos"
             android:layout_marginTop="16dp"/>

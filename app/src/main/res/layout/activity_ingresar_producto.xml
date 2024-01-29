@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="com.example.myapplication.IngresarProducto">
+
+    <!-- Agregamos un ScrollView para el contenido si es necesario -->
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:padding="16dp">
+
+            <!-- Spinner para seleccionar el cantón -->
+            <Spinner
+                android:id="@+id/spinnerCanton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="Seleccionar Cantón"
+                android:background="#FFFFFF"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+
+            <Spinner
+                android:id="@+id/spinnerEmpresa"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="Seleccionar Empresa"
+                android:background="#FFFFFF"
+                app:layout_constraintTop_toBottomOf="@+id/spinnerCanton"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+
+            <!-- Edit Texts -->
+            <EditText
+                android:id="@+id/editTextNombreProducto"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="11dp"
+                android:hint="Nombre del producto"
+                android:background="#FFFFFF"
+                app:layout_constraintTop_toBottomOf="@+id/spinnerEmpresa"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+
+            <Button
+                android:id="@+id/btnSeleccionarImagenProducto"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="Imagen del Producto"
+                android:textColor="#FFFFFF"
+                android:background="#2268E1"
+                app:layout_constraintTop_toBottomOf="@+id/editTextNombreProducto"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <EditText
+                android:id="@+id/editTextPrecio"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="11dp"
+                android:hint="Precio"
+                android:background="#FFFFFF"
+                app:layout_constraintTop_toBottomOf="@+id/btnSeleccionarImagenProducto"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <EditText
+                android:id="@+id/editTextDescripcion"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="11dp"
+                android:hint="Descripcion del producto"
+                android:background="#FFFFFF"
+                app:layout_constraintTop_toBottomOf="@+id/editTextPrecio"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <Button
+                android:id="@+id/btnGuardarProducto"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="11dp"
+                android:layout_marginBottom="16dp"
+                android:text="Guardar Producto"
+                android:textColor="#FFFFFF"
+                android:background="#e74c3c"
+                app:layout_constraintTop_toBottomOf="@+id/editTextDescripcion"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
