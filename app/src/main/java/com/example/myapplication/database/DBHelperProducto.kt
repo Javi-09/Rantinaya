@@ -457,6 +457,30 @@ class DBHelperProducto(context: Context) : SQLiteOpenHelper(context, DATABASE_NA
 
     // Funciones para Producto
     // (Similar a Cantón)
+    fun insertarEmpresaP(empresa: Empresa): Long {
+        val db = this.writableDatabase
+        val valores = ContentValues().apply {
+            put(Empresa.COLUMN_NOMBRE, empresa.nombre)
+            put(Empresa.COLUMN_SLOGAN, empresa.slogan)
+            put(Empresa.COLUMN_NOMBRE_PROPIETARIO, empresa.nombrePropietario)
+            put(Empresa.COLUMN_FACEBOOK, empresa.facebook)
+            put(Empresa.COLUMN_INSTAGRAM, empresa.instagram)
+            put(Empresa.COLUMN_WHATSAPP, empresa.whatsapp)
+            put(Empresa.COLUMN_DIRECCION, empresa.direccion)
+            put(Empresa.COLUMN_IMAGEN_EMPRESA, empresa.imagen_empresa)
+            put(Empresa.COLUMN_IMAGEN_PROPIETARIO, empresa.imagen_propietario)
+            put(Empresa.COLUMN_VIDEO_URL, empresa.video_url)
+            put(Empresa.COLUMN_FK_EMPRESA_CANTON, empresa.fkEmpresaCanton)
+        }
+
+        // Insertar la nueva fila, devolviendo el valor de la clave primaria de la nueva fila
+        val id = db.insert(Empresa.TABLE_NAME, null, valores)
+
+        // Cerrar la conexión a la base de datos
+        db.close()
+
+        return id
+    }
 
     companion object {
         const val DATABASE_VERSION = 1

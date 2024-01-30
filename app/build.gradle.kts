@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.e_commerce"
-        minSdk = 24
+        minSdk = 27
         targetSdk = 34  // Actualizado a la última versión
         versionCode = 1
         versionName = "1.0"
