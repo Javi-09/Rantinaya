@@ -11,7 +11,7 @@ class AcercaDe : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         this.supportActionBar?.hide()
-        setContentView(R.layout.activity_miembros_equipo)
+        setContentView(R.layout.activity_acercade)
 
         val recyclerView=findViewById<RecyclerView>(R.id.recyclerView)
         val adapter=CustomAdapter()
