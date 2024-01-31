@@ -21,6 +21,10 @@ class MostrarEmpresaFranciscoOrellanaServicio : AppCompatActivity(), EmpresaAdap
     private lateinit var databaseHelper: DBHelperServicio
     private var imagenNuPropietarioS: ByteArray? = null
     private var imagenNuEmpresaS: ByteArray? = null
+    private var imagenNuPropietarioS2: ByteArray? = null
+    private var imagenNuEmpresaS2: ByteArray? = null
+    private var imagenNuPropietarioS3: ByteArray? = null
+    private var imagenNuEmpresaS3: ByteArray? = null
     private fun cargarImagenesDesdeDrawables() {
         // Cargar imagen del drawable para el propietario
         val drawablePropietario: Drawable? = ContextCompat.getDrawable(this, R.drawable.ser1sach)
@@ -32,6 +36,28 @@ class MostrarEmpresaFranciscoOrellanaServicio : AppCompatActivity(), EmpresaAdap
         val bitmapEmpresa: Bitmap = drawableToBitmap(drawableEmpresa)
         imagenNuEmpresaS = bitmapEmpresa.toByteArray()
     }
+    private fun cargarImagenesDesdeDrawables2() {
+        // Cargar imagen del drawable para el propietario
+        val drawablePropietario: Drawable? = ContextCompat.getDrawable(this, R.drawable.se1sachaem)
+        val bitmapPropietario: Bitmap = drawableToBitmap(drawablePropietario)
+        imagenNuPropietarioS2 = bitmapPropietario.toByteArray()
+
+        // Cargar imagen del drawable para la empresa
+        val drawableEmpresa: Drawable? = ContextCompat.getDrawable(this, R.drawable.se1sachaem)
+        val bitmapEmpresa: Bitmap = drawableToBitmap(drawableEmpresa)
+        imagenNuEmpresaS2 = bitmapEmpresa.toByteArray()
+    }  private fun cargarImagenesDesdeDrawables3() {
+        // Cargar imagen del drawable para el propietario
+        val drawablePropietario: Drawable? = ContextCompat.getDrawable(this, R.drawable.ser1sach)
+        val bitmapPropietario: Bitmap = drawableToBitmap(drawablePropietario)
+        imagenNuPropietarioS3 = bitmapPropietario.toByteArray()
+
+        // Cargar imagen del drawable para la empresa
+        val drawableEmpresa: Drawable? = ContextCompat.getDrawable(this, R.drawable.se1sachaem)
+        val bitmapEmpresa: Bitmap = drawableToBitmap(drawableEmpresa)
+        imagenNuEmpresaS3 = bitmapEmpresa.toByteArray()
+    }
+
 
     private fun drawableToBitmap(drawable: Drawable?): Bitmap {
         if (drawable is BitmapDrawable) {
@@ -72,6 +98,8 @@ class MostrarEmpresaFranciscoOrellanaServicio : AppCompatActivity(), EmpresaAdap
         recyclerView.layoutManager = LinearLayoutManager(this)
         if (empresasFOP.isEmpty()) {
             insertarNuevaEmpresaS()
+            insertarNuevaEmpresaS2()
+            insertarNuevaEmpresaS3()
         }
     }
 
@@ -99,6 +127,52 @@ class MostrarEmpresaFranciscoOrellanaServicio : AppCompatActivity(), EmpresaAdap
             direccion = "google.maps.com",
             imagen_empresa = imagenNuEmpresaS,
             imagen_propietario = imagenNuPropietarioS,
+            video_url = "youtube.com/mivideo1",
+            fkEmpresaCanton = 1
+
+        )
+        val idNuevaEmpresa = databaseHelper.insertarEmpresaS(nuevaEmpresaS)
+        if (idNuevaEmpresa != -1L) {
+            // Se insertó correctamente, haz algo si es necesario
+        } else {
+            // Fallo al insertar, maneja el error
+        }
+    }
+    private fun insertarNuevaEmpresaS2() {
+        cargarImagenesDesdeDrawables2()
+        val nuevaEmpresaS = Empresa(
+            nombre = "CENTRO TURISTICO COMUNITARIO SHUAR JEMPE ",
+            slogan = "¡Descubre la esencia de la cultura Shuar y su conexión única con la naturaleza!",
+            nombrePropietario = "Jose  Ramirez",
+            facebook = "https://www.facebook.com/profile.php?id=61554703256013",
+            instagram = "instagram.com/miempresa1",
+            whatsapp = "123456789",
+            direccion = "google.maps.com",
+            imagen_empresa = imagenNuEmpresaS2,
+            imagen_propietario = imagenNuPropietarioS2,
+            video_url = "youtube.com/mivideo1",
+            fkEmpresaCanton = 1
+
+        )
+        val idNuevaEmpresa = databaseHelper.insertarEmpresaS(nuevaEmpresaS)
+        if (idNuevaEmpresa != -1L) {
+            // Se insertó correctamente, haz algo si es necesario
+        } else {
+            // Fallo al insertar, maneja el error
+        }
+    }
+    private fun insertarNuevaEmpresaS3() {
+        cargarImagenesDesdeDrawables3()
+        val nuevaEmpresaS = Empresa(
+            nombre = "RESTAURANT MADERA Y PIEDRA\n",
+            slogan = "Somos un restaurante en los que nuestros clientes pueden disfrutar de productos de calidad.\n",
+            nombrePropietario = "Cecilia Torres ",
+            facebook = "https://www.facebook.com/profile.php?id=61553177210905",
+            instagram = "https://www.instagram.com/restaurant_madera_y_piedra/",
+            whatsapp = "0987890879",
+            direccion = "google.maps.com",
+            imagen_empresa = imagenNuEmpresaS3,
+            imagen_propietario = imagenNuPropietarioS3,
             video_url = "youtube.com/mivideo1",
             fkEmpresaCanton = 1
 
