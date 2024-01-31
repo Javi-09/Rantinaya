@@ -27,7 +27,7 @@ class MostrarEmpresaFranciscoOrellanaServicio : AppCompatActivity(), EmpresaAdap
     private var imagenNuEmpresaS3: ByteArray? = null
     private fun cargarImagenesDesdeDrawables() {
         // Cargar imagen del drawable para el propietario
-        val drawablePropietario: Drawable? = ContextCompat.getDrawable(this, R.drawable.ser1sach)
+        val drawablePropietario: Drawable? = ContextCompat.getDrawable(this, R.drawable.se1sachaem)
         val bitmapPropietario: Bitmap = drawableToBitmap(drawablePropietario)
         imagenNuPropietarioS = bitmapPropietario.toByteArray()
 
@@ -48,12 +48,12 @@ class MostrarEmpresaFranciscoOrellanaServicio : AppCompatActivity(), EmpresaAdap
         imagenNuEmpresaS2 = bitmapEmpresa.toByteArray()
     }  private fun cargarImagenesDesdeDrawables3() {
         // Cargar imagen del drawable para el propietario
-        val drawablePropietario: Drawable? = ContextCompat.getDrawable(this, R.drawable.ser1sach)
+        val drawablePropietario: Drawable? = ContextCompat.getDrawable(this, R.drawable.saccha)
         val bitmapPropietario: Bitmap = drawableToBitmap(drawablePropietario)
         imagenNuPropietarioS3 = bitmapPropietario.toByteArray()
 
         // Cargar imagen del drawable para la empresa
-        val drawableEmpresa: Drawable? = ContextCompat.getDrawable(this, R.drawable.se1sachaem)
+        val drawableEmpresa: Drawable? = ContextCompat.getDrawable(this, R.drawable.saccha)
         val bitmapEmpresa: Bitmap = drawableToBitmap(drawableEmpresa)
         imagenNuEmpresaS3 = bitmapEmpresa.toByteArray()
     }
