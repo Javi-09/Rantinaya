@@ -19,6 +19,7 @@ import com.example.myapplication.database.DBHelperProducto
 import com.example.myapplication.database.Empresa
 import com.example.myapplication.database.Producto
 
+
 class DetalleEmpresaProducto : AppCompatActivity() {
 
     private lateinit var imageViewEmpresa: ImageView
@@ -121,7 +122,6 @@ class DetalleEmpresaProducto : AppCompatActivity() {
             btnVerMapa.setOnClickListener {
                 val urlDireccion = empresa.direccion
                 redireccionarUrl(urlDireccion, "Google Maps")
-                // Lógica para abrir el mapa, usando la latitud y longitud de la empresa, por ejemplo, abrir Google Maps
             }
 
             // Redireccionamiento a Facebook
