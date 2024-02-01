@@ -33,6 +33,8 @@ class MostrarEmpresaFranciscoOrellanaProducto : AppCompatActivity(), EmpresaAdap
     private var imagenNuEmpresa5: ByteArray? = null
     private var imagenNuPropietario6: ByteArray? = null
     private var imagenNuEmpresa6: ByteArray? = null
+    private var imagenNuPropietario7: ByteArray? = null
+    private var imagenNuEmpresa7: ByteArray? = null
     private fun cargarImagenesDesdeDrawables() {
         // Cargar imagen del drawable para el propietario
         val drawablePropietario: Drawable? = ContextCompat.getDrawable(this, R.drawable.apaik)
@@ -68,12 +70,12 @@ class MostrarEmpresaFranciscoOrellanaProducto : AppCompatActivity(), EmpresaAdap
     }
     private fun cargarImagenesDesdeDrawables4() {
         // Cargar imagen del drawable para el propietario
-        val drawablePropietario: Drawable? = ContextCompat.getDrawable(this, R.drawable.escapa)
+        val drawablePropietario: Drawable? = ContextCompat.getDrawable(this, R.drawable.aweid)
         val bitmapPropietario: Bitmap = drawableToBitmap(drawablePropietario)
         imagenNuPropietario4 = bitmapPropietario.toByteArray()
 
         // Cargar imagen del drawable para la empresa
-        val drawableEmpresa: Drawable? = ContextCompat.getDrawable(this, R.drawable.escapa)
+        val drawableEmpresa: Drawable? = ContextCompat.getDrawable(this, R.drawable.aweid)
         val bitmapEmpresa: Bitmap = drawableToBitmap(drawableEmpresa)
         imagenNuEmpresa4 = bitmapEmpresa.toByteArray()
     }
@@ -90,14 +92,25 @@ class MostrarEmpresaFranciscoOrellanaProducto : AppCompatActivity(), EmpresaAdap
     }
     private fun cargarImagenesDesdeDrawables6() {
         // Cargar imagen del drawable para el propietario
-        val drawablePropietario: Drawable? = ContextCompat.getDrawable(this, R.drawable.aweid)
+        val drawablePropietario: Drawable? = ContextCompat.getDrawable(this, R.drawable.escpapropi)
         val bitmapPropietario: Bitmap = drawableToBitmap(drawablePropietario)
         imagenNuPropietario6 = bitmapPropietario.toByteArray()
 
         // Cargar imagen del drawable para la empresa
-        val drawableEmpresa: Drawable? = ContextCompat.getDrawable(this, R.drawable.aweid)
+        val drawableEmpresa: Drawable? = ContextCompat.getDrawable(this, R.drawable.escapa)
         val bitmapEmpresa: Bitmap = drawableToBitmap(drawableEmpresa)
         imagenNuEmpresa6 = bitmapEmpresa.toByteArray()
+    }
+    private fun cargarImagenesDesdeDrawables7() {
+        // Cargar imagen del drawable para el propietario
+        val drawablePropietario: Drawable? = ContextCompat.getDrawable(this, R.drawable.asociacioarte1)
+        val bitmapPropietario: Bitmap = drawableToBitmap(drawablePropietario)
+        imagenNuPropietario7 = bitmapPropietario.toByteArray()
+
+        // Cargar imagen del drawable para la empresa
+        val drawableEmpresa: Drawable? = ContextCompat.getDrawable(this, R.drawable.asociacioart2)
+        val bitmapEmpresa: Bitmap = drawableToBitmap(drawableEmpresa)
+        imagenNuEmpresa7 = bitmapEmpresa.toByteArray()
     }
     private fun drawableToBitmap(drawable: Drawable?): Bitmap {
         if (drawable is BitmapDrawable) {
@@ -146,6 +159,7 @@ class MostrarEmpresaFranciscoOrellanaProducto : AppCompatActivity(), EmpresaAdap
             insertarNuevaEmpresaP4()
             insertarNuevaEmpresaP5()
             insertarNuevaEmpresaP6()
+            insertarNuevaEmpresaP7()
 
         }
 
@@ -172,10 +186,10 @@ class MostrarEmpresaFranciscoOrellanaProducto : AppCompatActivity(), EmpresaAdap
             facebook = "https://www.facebook.com/hongosapaika",
             instagram = "https://www.instagram.com/apaika.hongosdelaselva/",
             whatsapp = "098 330 8979",
-            direccion = "google.maps.com",
+            direccion = "https://www.google.com/maps/dir/-0.4662842,-76.9988664/-0.4327,-77.0014/@-0.4498627,-77.0188889,14.03z/data=!4m4!4m3!1m1!4e1!1m0?entry=ttu \n",
             imagen_empresa = imagenNuEmpresa,
             imagen_propietario = imagenNuPropietario,
-            video_url = "https://drive.google.com/uc?export=download&id=1DsW7s2L16u2sy7puEv4nMzVkPLMrNY_R",
+            video_url = "https://drive.google.com/file/d/1fmsdxULlvkUCEUUKMV8tShfpIhYJP_wW/view?usp=drive_link",
             fkEmpresaCanton = 1
 
         )
@@ -195,10 +209,10 @@ class MostrarEmpresaFranciscoOrellanaProducto : AppCompatActivity(), EmpresaAdap
             facebook = "https://www.instagram.com/asoproafy_waeme/",
             instagram = "",
             whatsapp = "098 330 8979",
-            direccion = "google.maps.com",
+            direccion = "https://maps.app.goo.gl/oohHnMcwdk9jTvDC9",
             imagen_empresa = imagenNuEmpresa2,
             imagen_propietario = imagenNuPropietario2,
-            video_url = "https://drive.google.com/uc?export=download&id=1DsW7s2L16u2sy7puEv4nMzVkPLMrNY_R",
+            video_url = "https://drive.google.com/file/d/1-_OKM5hPefSy0DpEKsx3lyt9uUzdxfwI/view?usp=drive_link",
             fkEmpresaCanton = 1
 
         )
@@ -218,10 +232,10 @@ class MostrarEmpresaFranciscoOrellanaProducto : AppCompatActivity(), EmpresaAdap
             facebook = "https://www.facebook.com/asoarte",
             instagram = "https://www.instagram.com/asoproawakmaki/",
             whatsapp = "09876543456",
-            direccion = "google.maps.com",
+            direccion = "https://maps.app.goo.gl/q6UQaov7utNmy8q59",
             imagen_empresa = imagenNuEmpresa3,
             imagen_propietario = imagenNuPropietario3,
-            video_url = "https://drive.google.com/uc?export=download&id=1DsW7s2L16u2sy7puEv4nMzVkPLMrNY_R",
+            video_url = "https://drive.google.com/file/d/1h0mLOwRkxJrk1QaToatdfBWS6w0At9dH/view?usp=drive_link",
             fkEmpresaCanton = 1
 
         )
@@ -241,10 +255,10 @@ class MostrarEmpresaFranciscoOrellanaProducto : AppCompatActivity(), EmpresaAdap
             facebook = "https://www.facebook.com/aweididelyasuni",
             instagram = "https://www.instagram.com/explore/tags/aweididelyasuni/",
             whatsapp = "0998493579",
-            direccion = "google.maps.com",
+            direccion = "https://maps.app.goo.gl/UdzdvPTxKvXazJSt8",
             imagen_empresa = imagenNuEmpresa4,
             imagen_propietario = imagenNuPropietario4,
-            video_url = "https://drive.google.com/uc?export=download&id=1DsW7s2L16u2sy7puEv4nMzVkPLMrNY_R",
+            video_url = "https://drive.google.com/file/d/1qOgTaVEh5T2Z_KY7pNeQtOuAO8RAewXe/view?usp=drive_link",
             fkEmpresaCanton = 1
 
         )
@@ -258,16 +272,16 @@ class MostrarEmpresaFranciscoOrellanaProducto : AppCompatActivity(), EmpresaAdap
     private fun insertarNuevaEmpresaP5() {
         cargarImagenesDesdeDrawables5()
         val nuevaEmpresaS5 = Empresa(
-            nombre = "ESCAPARATE SANCHEZ  ",
-            slogan = "Somo una tienda online que ofrece productos de especialidad en El Coca y envíos a   ",
-            nombrePropietario = "Maru Sanchez ",
-            facebook = "https://www.facebook.com/escaparate.sanchez",
-            instagram = "",
-            whatsapp = "099 046 5379",
-            direccion = "google.maps.com",
+            nombre = "DOÑA PAI ",
+            slogan = "El mejor dulce  d e tu vida ",
+            nombrePropietario = "Amanda Pia ",
+            facebook = "https://www.facebook.com/asoarte",
+            instagram = "https://www.instagram.com/asoproafy_waeme/",
+            whatsapp = "0987654345",
+            direccion = "https://maps.app.goo.gl/Ry3HeFoszueR1FQR6",
             imagen_empresa = imagenNuEmpresa5,
             imagen_propietario = imagenNuPropietario5,
-            video_url = "https://drive.google.com/uc?export=download&id=1DsW7s2L16u2sy7puEv4nMzVkPLMrNY_R",
+            video_url = "https://drive.google.com/file/d/16APNS4QFcQirk__ED0N8VUVxNACLA6na/view?usp=drive_link",
             fkEmpresaCanton = 1
 
         )
@@ -278,19 +292,20 @@ class MostrarEmpresaFranciscoOrellanaProducto : AppCompatActivity(), EmpresaAdap
             // Fallo al insertar, maneja el error
         }
     }
+
     private fun insertarNuevaEmpresaP6() {
         cargarImagenesDesdeDrawables6()
         val nuevaEmpresaS6 = Empresa(
-            nombre = "ASOPROAFY WAEME  ",
-            slogan = "Somos un emprendimiento dedicado a transmitir con nuestros productos bienestar, pureza y frescura cultivando y procesando nuestros propios productos.\n ",
-            nombrePropietario = "Martin Casanoba ",
-            facebook = "https://www.facebook.com/asoarte",
-            instagram = "https://www.instagram.com/asoproafy_waeme/",
-            whatsapp = "08796543247",
-            direccion = "google.maps.com",
+            nombre = "ESCAPARATE SANCHEZ  ",
+            slogan = "Somo una tienda online que ofrece productos de especialidad en El Coca y envíos a   ",
+            nombrePropietario = "Maru Sanchez ",
+            facebook = "https://www.facebook.com/escaparate.sanchez",
+            instagram = "",
+            whatsapp = "099 046 5379",
+            direccion = "https://maps.app.goo.gl/s8yP2ezxFTho49559",
             imagen_empresa = imagenNuEmpresa6,
             imagen_propietario = imagenNuPropietario6,
-            video_url = "https://drive.google.com/uc?export=download&id=1DsW7s2L16u2sy7puEv4nMzVkPLMrNY_R",
+            video_url = "https://drive.google.com/file/d/11jCcn8oUKnfF0eu_HF16tekOhE7ZCXIJ/view?usp=drive_link",
             fkEmpresaCanton = 1
 
         )
@@ -302,5 +317,28 @@ class MostrarEmpresaFranciscoOrellanaProducto : AppCompatActivity(), EmpresaAdap
         }
     }
 
+    private fun insertarNuevaEmpresaP7() {
+        cargarImagenesDesdeDrawables7()
+        val nuevaEmpresaS7 = Empresa(
+            nombre = "ASOPROAFY WAEME  ",
+            slogan = "Somos un emprendimiento dedicado a transmitir con nuestros productos bienestar, pureza y frescura cultivando y procesando nuestros propios productos.\n ",
+            nombrePropietario = "Martin Casanoba ",
+            facebook = "https://www.facebook.com/asoarte",
+            instagram = "https://www.instagram.com/asoproafy_waeme/",
+            whatsapp = "08796543247",
+            direccion = "https://maps.app.goo.gl/q6UQaov7utNmy8q59",
+            imagen_empresa = imagenNuEmpresa7,
+            imagen_propietario = imagenNuPropietario7,
+            video_url = "https://drive.google.com/file/d/1-_OKM5hPefSy0DpEKsx3lyt9uUzdxfwI/view?usp=drive_link",
+            fkEmpresaCanton = 1
+
+        )
+        val idNuevaEmpresa = databaseHelper.insertarEmpresaP(nuevaEmpresaS7)
+        if (idNuevaEmpresa != -1L) {
+            // Se insertó correctamente, haz algo si es necesario
+        } else {
+            // Fallo al insertar, maneja el error
+        }
+    }
 
 }

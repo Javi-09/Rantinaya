@@ -38,22 +38,22 @@ class MostrarEmpresaFranciscoOrellanaServicio : AppCompatActivity(), EmpresaAdap
     }
     private fun cargarImagenesDesdeDrawables2() {
         // Cargar imagen del drawable para el propietario
-        val drawablePropietario: Drawable? = ContextCompat.getDrawable(this, R.drawable.se1sachaem)
+        val drawablePropietario: Drawable? = ContextCompat.getDrawable(this, R.drawable.shuarempre)
         val bitmapPropietario: Bitmap = drawableToBitmap(drawablePropietario)
         imagenNuPropietarioS2 = bitmapPropietario.toByteArray()
 
         // Cargar imagen del drawable para la empresa
-        val drawableEmpresa: Drawable? = ContextCompat.getDrawable(this, R.drawable.se1sachaem)
+        val drawableEmpresa: Drawable? = ContextCompat.getDrawable(this, R.drawable.shuarempre)
         val bitmapEmpresa: Bitmap = drawableToBitmap(drawableEmpresa)
         imagenNuEmpresaS2 = bitmapEmpresa.toByteArray()
     }  private fun cargarImagenesDesdeDrawables3() {
         // Cargar imagen del drawable para el propietario
-        val drawablePropietario: Drawable? = ContextCompat.getDrawable(this, R.drawable.saccha)
+        val drawablePropietario: Drawable? = ContextCompat.getDrawable(this, R.drawable.madero1)
         val bitmapPropietario: Bitmap = drawableToBitmap(drawablePropietario)
         imagenNuPropietarioS3 = bitmapPropietario.toByteArray()
 
         // Cargar imagen del drawable para la empresa
-        val drawableEmpresa: Drawable? = ContextCompat.getDrawable(this, R.drawable.saccha)
+        val drawableEmpresa: Drawable? = ContextCompat.getDrawable(this, R.drawable.madero2)
         val bitmapEmpresa: Bitmap = drawableToBitmap(drawableEmpresa)
         imagenNuEmpresaS3 = bitmapEmpresa.toByteArray()
     }
@@ -124,10 +124,10 @@ class MostrarEmpresaFranciscoOrellanaServicio : AppCompatActivity(), EmpresaAdap
             facebook = "https://www.facebook.com/AserlimebpevEC",
             instagram = "instagram.com/miempresa1",
             whatsapp = "123456789",
-            direccion = "google.maps.com",
+            direccion = "https://maps.app.goo.gl/q6UQaov7utNmy8q59",
             imagen_empresa = imagenNuEmpresaS,
             imagen_propietario = imagenNuPropietarioS,
-            video_url = "youtube.com/mivideo1",
+            video_url = "https://drive.google.com/file/d/1beK1gGxkpTJyx5Og-lmKNQEqKXg0d8rh/view?usp=drive_link",
             fkEmpresaCanton = 1
 
         )
@@ -147,10 +147,10 @@ class MostrarEmpresaFranciscoOrellanaServicio : AppCompatActivity(), EmpresaAdap
             facebook = "https://www.facebook.com/profile.php?id=61554703256013",
             instagram = "instagram.com/miempresa1",
             whatsapp = "123456789",
-            direccion = "google.maps.com",
+            direccion = "https://maps.app.goo.gl/PBUXdPGf7JqwdUBZ8",
             imagen_empresa = imagenNuEmpresaS2,
             imagen_propietario = imagenNuPropietarioS2,
-            video_url = "youtube.com/mivideo1",
+            video_url = "https://drive.google.com/file/d/1beK1gGxkpTJyx5Og-lmKNQEqKXg0d8rh/view?usp=drive_link",
             fkEmpresaCanton = 1
 
         )
@@ -170,10 +170,10 @@ class MostrarEmpresaFranciscoOrellanaServicio : AppCompatActivity(), EmpresaAdap
             facebook = "https://www.facebook.com/profile.php?id=61553177210905",
             instagram = "https://www.instagram.com/restaurant_madera_y_piedra/",
             whatsapp = "0987890879",
-            direccion = "google.maps.com",
+            direccion = "https://maps.app.goo.gl/EHQ3A22Pd7vbMMiA6",
             imagen_empresa = imagenNuEmpresaS3,
             imagen_propietario = imagenNuPropietarioS3,
-            video_url = "youtube.com/mivideo1",
+            video_url = "https://drive.google.com/file/d/1-_OKM5hPefSy0DpEKsx3lyt9uUzdxfwI/view?usp=drive_link",
             fkEmpresaCanton = 1
 
         )
