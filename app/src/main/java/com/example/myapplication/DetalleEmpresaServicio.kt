@@ -12,8 +12,10 @@ import android.widget.MediaController
 import android.widget.TextView
 import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.e_commerce.R
-import com.example.myapplication.database.DBHelperProducto
+import androidx.recyclerview.widget.RecyclerView
+//import com.example.myapplication.database.DBHelperProducto
 import com.example.myapplication.database.DBHelperServicio
 import com.example.myapplication.database.Empresa
 import java.io.ByteArrayInputStream
@@ -31,6 +33,8 @@ class DetalleEmpresaServicio : AppCompatActivity() {
     private lateinit var imageViewWhatsapp: ImageView
     private lateinit var videoViewEmpresa: VideoView
     private lateinit var databaseHelper: DBHelperServicio
+    private lateinit var AdaptadorServicios: AdaptadorServicios
+    private lateinit var recyclerViewServicios: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +49,7 @@ class DetalleEmpresaServicio : AppCompatActivity() {
         imageViewInstagram = findViewById(R.id.imageViewInstagram)
         imageViewWhatsapp = findViewById(R.id.imageViewWhatsapp)
         videoViewEmpresa = findViewById(R.id.videoViewEmpresa)
+        recyclerViewServicios = findViewById(R.id.recyclerViewServicios)
 
         // Inicializar DBHelper
         databaseHelper = DBHelperServicio(this)
@@ -54,6 +59,11 @@ class DetalleEmpresaServicio : AppCompatActivity() {
 
         // Obtener datos de la empresa desde la base de datos
         val empresa = databaseHelper.getEmpresaById(empresaId)
+
+        // Configurar RecyclerView para productos
+        AdaptadorServicios = AdaptadorServicios()
+        recyclerViewServicios.adapter = AdaptadorServicios
+        recyclerViewServicios.layoutManager = LinearLayoutManager(this)
 
         // Mostrar datos en las vistas
         mostrarDetallesEmpresa(empresa)
@@ -136,6 +146,10 @@ class DetalleEmpresaServicio : AppCompatActivity() {
                 val phoneNumber = empresa?.whatsapp
                 redireccionarWhatsapp(phoneNumber)
             }
+
+            // Obtener y mostrar productos relacionados con la empresa
+            val servicios = databaseHelper.getServiciosByEmpresaId(empresa.id)
+            AdaptadorServicios.actualizarServicios(servicios)
         }
     }
 

@@ -388,6 +388,8 @@ class DBHelperProducto(context: Context) : SQLiteOpenHelper(context, DATABASE_NA
 
     //------------
 
+    //-------
+
     //Funcion para insertar productos
     fun getEmpresaByNombreYIdCanton(nombreEmpresa: String, idCanton: Long): Empresa? {
         val db = this.readableDatabase

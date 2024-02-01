@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#ecf0f1">
+
+    <!-- Nombre del Servicio -->
+    <TextView
+        android:id="@+id/textNombre"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="#3498db"
+        android:text="Nombre del Servicio"
+        android:textColor="#FFFFFF"
+        android:gravity="center"/>
+
+    <!-- Contenedor para la Imagen y el Precio -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Imagen del Servicio -->
+        <ImageView
+            android:id="@+id/imageServicio"
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop"/>
+
+        <!-- Precio del Servicio -->
+        <TextView
+            android:id="@+id/textPrecio"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:textColor="#2c3e50"/>
+    </LinearLayout>
+
+    <!-- Descripción del Servicio -->
+    <TextView
+        android:id="@+id/textDescripcion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:padding="8dp"
+        android:textColor="#7f8c8d"/>
+</LinearLayout>

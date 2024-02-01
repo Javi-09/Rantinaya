@@ -436,9 +436,44 @@ class DBHelperServicio(context: Context) : SQLiteOpenHelper(context, DATABASE_NA
 
         return db.insert(Servicio.TABLE_NAME, null, values)
     }
-    //----------------------------------------
+    fun getServiciosByEmpresaId(empresaId: Long): List<Servicio> {
+        val servicios = mutableListOf<Servicio>()
+        val db = this.readableDatabase
+        val cursor = db.query(
+            Servicio.TABLE_NAME,
+            null,
+            "${Servicio.COLUMN_FK_SERVICIO_EMPRESA} = ?",
+            arrayOf(empresaId.toString()),
+            null,
+            null,
+            null
+        )
+
+        while (cursor.moveToNext()) {
+            val idIndex = cursor.getColumnIndex(Servicio.COLUMN_ID)
+            val nombreIndex = cursor.getColumnIndex(Servicio.COLUMN_NOMBRE)
+            val imagenIndex = cursor.getColumnIndex(Servicio.COLUMN_IMAGEN)
+            val precioIndex = cursor.getColumnIndex(Servicio.COLUMN_PRECIO)
+            val descripcionIndex = cursor.getColumnIndex(Servicio.COLUMN_DESCRIPCION)
+            val fkServicioEmpresaIndex = cursor.getColumnIndex(Servicio.COLUMN_FK_SERVICIO_EMPRESA)
+
+            val id = cursor.getLong(idIndex)
+            val nombre = cursor.getString(nombreIndex)
+            val imagen = cursor.getBlob(imagenIndex)
+            val precio = cursor.getDouble(precioIndex)
+            val descripcion = cursor.getString(descripcionIndex)
+            val fkServicioEmpresa = cursor.getLong(fkServicioEmpresaIndex)
+
+            val servicio = Servicio(id, nombre, imagen, precio, descripcion, fkServicioEmpresa)
+            servicios.add(servicio)
+        }
+
+        cursor.close()
+        return servicios
+    }
 
 
+    //---------
     // (Similar a Cantón)
 
     companion object {
