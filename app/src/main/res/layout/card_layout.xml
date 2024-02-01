@@ -5,7 +5,7 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card_view"
     android:layout_margin="12dp"
-    card_view:cardBackgroundColor="@color/celeste"
+    card_view:cardBackgroundColor="@color/white"
     card_view:cardCornerRadius="20dp"
     card_view:cardElevation="6dp"
     card_view:contentPadding="4dp" >
@@ -28,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="MIEMBRO"
-            android:textColor="@color/white"
+            android:textColor="@color/azul"
             android:id="@+id/item_name"
             android:textStyle="bold"
             android:layout_toEndOf="@+id/item_image"
@@ -41,7 +41,6 @@
             android:text="Estudiante"
             android:textColor="@color/black"
             android:id="@+id/item_detail"
-            android:textStyle="bold"
             android:layout_toEndOf="@+id/item_image"
             android:layout_toRightOf="@+id/item_image"
             android:layout_below="@+id/item_name" />

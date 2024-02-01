@@ -36,8 +36,6 @@ tools:context="com.example.myapplication.MainActivity">
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <!-- Add your app's content here -->
-
 
         <ImageView
             android:id="@+id/toolbar_image"
@@ -63,18 +61,14 @@ tools:context="com.example.myapplication.MainActivity">
             android:background="#B4F78B"
             android:text="@string/sitioWeb" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/asociados"
-            android:textSize="16sp"
-            android:textColor="@color/black"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="750dp" />
+    <include
+        layout="@layout/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom" />
 
 
-
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
