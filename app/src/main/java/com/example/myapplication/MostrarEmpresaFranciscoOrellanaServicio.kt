@@ -104,9 +104,28 @@ class MostrarEmpresaFranciscoOrellanaServicio : AppCompatActivity(), EmpresaAdap
 
             // Insertar servicios solo si no existen
             if (!serviciosYaInsertados()) {
-                insertarNuevoServicio("Servicio 1", "Descripción Servicio 1", 10.0, R.drawable.imagen_producto1, 1)
-                insertarNuevoServicio("Servicio 2", "Descripción Servicio 2", 15.0, R.drawable.imagen_producto2, 2)
+                insertarNuevoServicio("SERVICIO LIMPIESA 1", "Limpiesa con productos de diferentes colores y olores", 10.0, R.drawable.clor, 1)
+                insertarNuevoServicio("SERVICIO LIMPIESA 2", "Limpiesa con productos de diferentes colores y olores", 15.0, R.drawable.clor1, 1)
+                insertarNuevoServicio("SERVICIO LIMPIESA 3", "Limpiesa con productos de diferentes colores y olores", 10.0, R.drawable.clor2, 1)
+                insertarNuevoServicio("SERVICIO LIMPIESA 4", "Limpiesa con productos de diferentes colores y olores", 15.0, R.drawable.clor3, 1)
+                insertarNuevoServicio("SERVICIO LIMPIESA 5", "Limpiesa con productos de diferentes colores y olores", 10.0, R.drawable.clor4, 1)
+
+
+                insertarNuevoServicio("SERVICIO 1", "", 15.0, R.drawable.cent, 2)
+                insertarNuevoServicio("SERVICIO 2", "", 10.0, R.drawable.cent2, 2)
+                insertarNuevoServicio("SERVICIO 3", "", 15.0, R.drawable.cent3, 2)
+                insertarNuevoServicio("SERVICIO 4", "", 10.0, R.drawable.cent4, 2)
+                insertarNuevoServicio("SERVICIO 5", "", 15.0, R.drawable.cent5, 2)
+
+
+                insertarNuevoServicio("SERVICIO 1", "", 10.0, R.drawable.rest, 3)
+                insertarNuevoServicio("SERVICIO 2", "", 15.0, R.drawable.rest1, 3)
+                insertarNuevoServicio("SERVICIO 1", "", 10.0, R.drawable.rest2, 3)
+                insertarNuevoServicio("SERVICIO 2", "", 15.0, R.drawable.rest3, 3)
+                insertarNuevoServicio("SERVICIO 1", "", 10.0, R.drawable.rest4, 3)
                 // ... Añadir más productos según sea necesario
+
+
             }
 
         }
