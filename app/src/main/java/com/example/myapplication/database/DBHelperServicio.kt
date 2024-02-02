@@ -507,4 +507,43 @@ class DBHelperServicio(context: Context) : SQLiteOpenHelper(context, DATABASE_NA
             db.close()
         }
     }
+
+
+    //Funcion insertar servicio por codigo
+
+    fun contarServiciosPorEmpresa(idEmpresa: Long): Int {
+        val db = this.readableDatabase
+        val query = "SELECT COUNT(*) FROM ${Servicio.TABLE_NAME} WHERE ${Servicio.COLUMN_FK_SERVICIO_EMPRESA} = $idEmpresa"
+        val cursor = db.rawQuery(query, null)
+        var count = 0
+
+        try {
+            if (cursor.moveToFirst()) {
+                count = cursor.getInt(0)
+            }
+        } finally {
+            cursor.close()
+            db.close()
+        }
+
+        return count
+    }
+
+    fun insertarServicio(servicio: Servicio): Long {
+        val db = this.writableDatabase
+        val values = ContentValues().apply {
+            put(Servicio.COLUMN_NOMBRE, servicio.nombre)
+            put(Servicio.COLUMN_IMAGEN, servicio.imagen)
+            put(Servicio.COLUMN_PRECIO, servicio.precio)
+            put(Servicio.COLUMN_DESCRIPCION, servicio.descripcion)
+            put(Servicio.COLUMN_FK_SERVICIO_EMPRESA, servicio.fkProductoEmpresa)
+        }
+
+        val idNuevoServicio = db.insert(Servicio.TABLE_NAME, null, values)
+        db.close()
+        return idNuevoServicio
+    }
+    //---------
+
+
 }

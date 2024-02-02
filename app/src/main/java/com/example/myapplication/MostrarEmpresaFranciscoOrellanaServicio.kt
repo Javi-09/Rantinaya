@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.e_commerce.R
 import com.example.myapplication.database.DBHelperServicio
 import com.example.myapplication.database.Empresa
+import com.example.myapplication.database.Servicio
 import java.io.ByteArrayOutputStream
 
 class MostrarEmpresaFranciscoOrellanaServicio : AppCompatActivity(), EmpresaAdapter.ClickListener {
@@ -100,6 +101,14 @@ class MostrarEmpresaFranciscoOrellanaServicio : AppCompatActivity(), EmpresaAdap
             insertarNuevaEmpresaS()
             insertarNuevaEmpresaS2()
             insertarNuevaEmpresaS3()
+
+            // Insertar servicios solo si no existen
+            if (!serviciosYaInsertados()) {
+                insertarNuevoServicio("Servicio 1", "Descripción Servicio 1", 10.0, R.drawable.imagen_producto1, 1)
+                insertarNuevoServicio("Servicio 2", "Descripción Servicio 2", 15.0, R.drawable.imagen_producto2, 2)
+                // ... Añadir más productos según sea necesario
+            }
+
         }
     }
 
@@ -184,4 +193,43 @@ class MostrarEmpresaFranciscoOrellanaServicio : AppCompatActivity(), EmpresaAdap
             // Fallo al insertar, maneja el error
         }
     }
+
+
+   //Insertar Servicio
+
+    private fun serviciosYaInsertados(): Boolean {
+        // Puedes implementar lógica para verificar si los productos ya existen en la base de datos
+        // Por ejemplo, contar el número de productos para una empresa específica y verificar si es mayor que cero
+        val count = databaseHelper.contarServiciosPorEmpresa(1)  // Reemplaza con el id de empresa correcto
+        return count > 0
+    }
+
+    private fun insertarNuevoServicio(nombre: String, descripcion: String, precio: Double, imagenResId: Int, fkEmpresa: Long) {
+        val imagenByteArray = cargarImagenDesdeDrawable(imagenResId)
+
+        val nuevoServicio = Servicio(
+            nombre = nombre,
+            imagen = imagenByteArray,
+            precio = precio,
+            descripcion = descripcion,
+            fkProductoEmpresa = fkEmpresa
+        )
+
+        val idNuevoProducto = databaseHelper.insertarServicio(nuevoServicio)
+        if (idNuevoProducto != -1L) {
+            // Se insertó correctamente, haz algo si es necesario
+        } else {
+            // Fallo al insertar, maneja el error
+        }
+    }
+
+    private fun cargarImagenDesdeDrawable(drawableResId: Int): ByteArray? {
+        val drawable: Drawable? = ContextCompat.getDrawable(this, drawableResId)
+        val bitmap: Bitmap = drawableToBitmap(drawable)
+        return bitmap.toByteArray()
+    }
+   //---------------------
+
+
+
 }

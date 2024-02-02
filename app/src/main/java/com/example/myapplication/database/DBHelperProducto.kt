@@ -484,6 +484,42 @@ class DBHelperProducto(context: Context) : SQLiteOpenHelper(context, DATABASE_NA
         return id
     }
 
+    //Insertar Producto en Codigo
+
+    fun contarProductosPorEmpresa(idEmpresa: Long): Int {
+        val db = this.readableDatabase
+        val query = "SELECT COUNT(*) FROM ${Producto.TABLE_NAME} WHERE ${Producto.COLUMN_FK_PRODUCTO_EMPRESA} = $idEmpresa"
+        val cursor = db.rawQuery(query, null)
+        var count = 0
+
+        try {
+            if (cursor.moveToFirst()) {
+                count = cursor.getInt(0)
+            }
+        } finally {
+            cursor.close()
+            db.close()
+        }
+
+        return count
+    }
+
+    fun insertarProducto(producto: Producto): Long {
+        val db = this.writableDatabase
+        val values = ContentValues().apply {
+            put(Producto.COLUMN_NOMBRE, producto.nombre)
+            put(Producto.COLUMN_IMAGEN, producto.imagen)
+            put(Producto.COLUMN_PRECIO, producto.precio)
+            put(Producto.COLUMN_DESCRIPCION, producto.descripcion)
+            put(Producto.COLUMN_FK_PRODUCTO_EMPRESA, producto.fkProductoEmpresa)
+        }
+
+        val idNuevoProducto = db.insert(Producto.TABLE_NAME, null, values)
+        db.close()
+        return idNuevoProducto
+    }
+    //----------------------------
+
 
     companion object {
         const val DATABASE_VERSION = 1
