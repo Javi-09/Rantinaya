@@ -150,16 +150,55 @@ class MostrarEmpresaFranciscoOrellanaProducto : AppCompatActivity(), EmpresaAdap
 
             // Insertar productos solo si no existen
             if (!productosYaInsertados()) {
-                insertarNuevoProducto("Producto 1", "Descripción 1", 10.0, R.drawable.imagen_producto1, 1)
-                insertarNuevoProducto("Producto 2", "Descripción 2", 15.0, R.drawable.imagen_producto2, 2)
+                insertarNuevoProducto("PRODUCTO 1", "Nuevos productos elaborados con colaboración de nuestros amigos fungicultores de La Casa del Hongo   a base de los deliciosos hongos orgánicos", 10.0, R.drawable.produ1, 1)
+                insertarNuevoProducto("PRODUCTO 2", "Hongos ostra blancos y rosados ", 15.0, R.drawable.produ2, 1)
+                insertarNuevoProducto("PRODUCTO 3", "Pleurotus djamor es un alimento saludable que contiene proteínas y proteínas bajas en grasa", 10.0, R.drawable.produ3, 1)
+                insertarNuevoProducto("Producto 4", "Crecimiento y cosecha hongos ostra rosados (pleurotus djamor)", 15.0, R.drawable.produ4, 1)
+                insertarNuevoProducto("Producto 5", "Nos alegramos de comunicarles que ya crecen en nuestro invernadero  hongos medicinales", 15.0, R.drawable.produ5, 1)
+                //segunda empresa.
+                insertarNuevoProducto("PRODUCTO 1", " En Waeme, transformamos lo ordinario en extraordinario, llevando la esencia de la jamaica a tu mesa con amor y dedicación. ", 15.0, R.drawable.awe, 2)
+                insertarNuevoProducto("PRODUCTO 2", "¡Descubre el sabor único de la flor de Jamaica en cada sorbo! ", 15.0, R.drawable.awe1, 2)
+                insertarNuevoProducto("PRODUCTO 3", " Sumérgete en el sabor vibrante de nuestra mermelada de jamaica, donde cada frasco está lleno de la dulzura única de la naturaleza. ", 15.0, R.drawable.awe2, 2)
+                insertarNuevoProducto("PRODUCTO 4", " Flor deshidratada de jamaica  de 50g y de 10g ", 15.0, R.drawable.awe3, 2)
+                insertarNuevoProducto("PRODUCTO 5", "Flor de jamica producida en Orellana Ines Arango", 15.0, R.drawable.awe4, 2)
+                //TERCERA EMPRESA
+
+                insertarNuevoProducto("PRODUCTO 1", " AWAK MAKI manos tejedoras ", 15.0, R.drawable.awr, 3)
+                insertarNuevoProducto("PRODUCTO 2", " ", 15.0, R.drawable.imagen_producto1, 3)
+                insertarNuevoProducto("PRODUCTO 3", "  ", 15.0, R.drawable.imagen_producto1, 3)
+                insertarNuevoProducto("PRODUCTO 4", " ", 15.0, R.drawable.imagen_producto1, 3)
+                insertarNuevoProducto("PRODUCTO 5", "", 15.0, R.drawable.imagen_producto1, 3)
+                //cuarta empresa
+
+                insertarNuevoProducto("PRODUCTO 1", "  Jabones de glicerina y extractos de plantas amazónicas  ", 15.0, R.drawable.yasu, 4)
+                insertarNuevoProducto("PRODUCTO 2", "Relajacion y suavidad  de tu cuerpo jabones de glicerina  con productos naturales ", 15.0, R.drawable.yasu1, 4)
+                insertarNuevoProducto("PRODUCTO 3", " Los mejores jabones  con aromas y esencias de la zona  ", 15.0, R.drawable.yasu2, 4)
+                insertarNuevoProducto("PRODUCTO 4", "PROPIEDADES DEL JABÓN DE AVENA Y MIEL ", 15.0, R.drawable.yasu4, 4)
+                insertarNuevoProducto("PRODUCTO 5", "JABONES NATURALES DE GLICERINA vs. JABONES INDUSTRIALES ", 15.0, R.drawable.yasu3, 4)
+                ///quinta empresa
+
+
+                insertarNuevoProducto("PRODUCTO 1", "  Delicioso Crepe  ", 15.0, R.drawable.pia, 5)
+                insertarNuevoProducto("PRODUCTO 2", " Sánduche con pollo a la plancha. ", 15.0, R.drawable.pia1, 5)
+                insertarNuevoProducto("PRODUCTO 3", " Sánduche con bebida ", 15.0, R.drawable.pia2, 5)
+                insertarNuevoProducto("PRODUCTO 4", "Frappé de Capuccino", 15.0, R.drawable.pia3, 5)
+                insertarNuevoProducto("PRODUCTO 5", "Prueba nuestro delicioso cheesecake aquí en cafetería     ", 15.0, R.drawable.pia5, 5)
+                //sexta empresa
+                insertarNuevoProducto("PRODUCTO 1", "    ", 15.0, R.drawable.imagen_producto1, 6)
+                insertarNuevoProducto("PRODUCTO 2", "  ", 15.0, R.drawable.imagen_producto1, 6)
+                insertarNuevoProducto("PRODUCTO 3", "  ", 15.0, R.drawable.imagen_producto1, 6)
+                insertarNuevoProducto("PRODUCTO 4", "  ", 15.0, R.drawable.imagen_producto1, 6)
+                insertarNuevoProducto("PRODUCTO 5", "    ", 15.0, R.drawable.imagen_producto1, 6)
+
+
+
                 // ... Añadir más productos según sea necesario
             }
 
-        }
 
         }
 
-
+        }
 
     override fun onVerEmpresaClick(position: Int) {
         val empresaSeleccionada = adapter.empresas[position]
