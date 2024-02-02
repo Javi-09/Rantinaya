@@ -12,7 +12,6 @@ class Administrador : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_administrador)
 
-
         val btnServicio: Button = findViewById(R.id.btnServicio)
         val btnProducto: Button = findViewById(R.id.btnProducto)
         val btnAgregarAdmin: Button = findViewById(R.id.btnAgregarAdmin)
@@ -22,8 +21,6 @@ class Administrador : AppCompatActivity() {
         val bntActualizarEmpresaServicio: Button= findViewById(R.id.bntActualizarEmpresaServicio)
         val btnInProducto:Button= findViewById(R.id.btnInProducto)
         val btnInServicio:Button= findViewById(R.id.btnInServicio)
-
-
 
         btnServicio.setOnClickListener {
             // Acción al presionar el botón de Servicio
