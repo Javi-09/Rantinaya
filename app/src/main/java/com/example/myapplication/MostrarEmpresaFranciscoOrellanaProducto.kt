@@ -150,6 +150,7 @@ class MostrarEmpresaFranciscoOrellanaProducto : AppCompatActivity(), EmpresaAdap
 
             // Insertar productos solo si no existen
             if (!productosYaInsertados()) {
+                //primera empresa
                 insertarNuevoProducto("PRODUCTO 1", "Nuevos productos elaborados con colaboración de nuestros amigos fungicultores de La Casa del Hongo   a base de los deliciosos hongos orgánicos", 10.0, R.drawable.produ1, 1)
                 insertarNuevoProducto("PRODUCTO 2", "Hongos ostra blancos y rosados ", 15.0, R.drawable.produ2, 1)
                 insertarNuevoProducto("PRODUCTO 3", "Pleurotus djamor es un alimento saludable que contiene proteínas y proteínas bajas en grasa", 10.0, R.drawable.produ3, 1)
@@ -164,33 +165,23 @@ class MostrarEmpresaFranciscoOrellanaProducto : AppCompatActivity(), EmpresaAdap
                 //TERCERA EMPRESA
 
                 insertarNuevoProducto("PRODUCTO 1", " AWAK MAKI manos tejedoras ", 15.0, R.drawable.awr, 3)
-                insertarNuevoProducto("PRODUCTO 2", " ", 15.0, R.drawable.imagen_producto1, 3)
-                insertarNuevoProducto("PRODUCTO 3", "  ", 15.0, R.drawable.imagen_producto1, 3)
-                insertarNuevoProducto("PRODUCTO 4", " ", 15.0, R.drawable.imagen_producto1, 3)
-                insertarNuevoProducto("PRODUCTO 5", "", 15.0, R.drawable.imagen_producto1, 3)
-                //cuarta empresa
 
+                //cuarta empresa
                 insertarNuevoProducto("PRODUCTO 1", "  Jabones de glicerina y extractos de plantas amazónicas  ", 15.0, R.drawable.yasu, 4)
                 insertarNuevoProducto("PRODUCTO 2", "Relajacion y suavidad  de tu cuerpo jabones de glicerina  con productos naturales ", 15.0, R.drawable.yasu1, 4)
                 insertarNuevoProducto("PRODUCTO 3", " Los mejores jabones  con aromas y esencias de la zona  ", 15.0, R.drawable.yasu2, 4)
                 insertarNuevoProducto("PRODUCTO 4", "PROPIEDADES DEL JABÓN DE AVENA Y MIEL ", 15.0, R.drawable.yasu4, 4)
                 insertarNuevoProducto("PRODUCTO 5", "JABONES NATURALES DE GLICERINA vs. JABONES INDUSTRIALES ", 15.0, R.drawable.yasu3, 4)
+
                 ///quinta empresa
-
-
                 insertarNuevoProducto("PRODUCTO 1", "  Delicioso Crepe  ", 15.0, R.drawable.pia, 5)
                 insertarNuevoProducto("PRODUCTO 2", " Sánduche con pollo a la plancha. ", 15.0, R.drawable.pia1, 5)
                 insertarNuevoProducto("PRODUCTO 3", " Sánduche con bebida ", 15.0, R.drawable.pia2, 5)
                 insertarNuevoProducto("PRODUCTO 4", "Frappé de Capuccino", 15.0, R.drawable.pia3, 5)
                 insertarNuevoProducto("PRODUCTO 5", "Prueba nuestro delicioso cheesecake aquí en cafetería     ", 15.0, R.drawable.pia5, 5)
+
                 //sexta empresa
                 insertarNuevoProducto("PRODUCTO 1", "    ", 15.0, R.drawable.imagen_producto1, 6)
-                insertarNuevoProducto("PRODUCTO 2", "  ", 15.0, R.drawable.imagen_producto1, 6)
-                insertarNuevoProducto("PRODUCTO 3", "  ", 15.0, R.drawable.imagen_producto1, 6)
-                insertarNuevoProducto("PRODUCTO 4", "  ", 15.0, R.drawable.imagen_producto1, 6)
-                insertarNuevoProducto("PRODUCTO 5", "    ", 15.0, R.drawable.imagen_producto1, 6)
-
-
 
                 // ... Añadir más productos según sea necesario
             }
